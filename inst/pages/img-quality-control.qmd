@@ -347,7 +347,9 @@ A simple spot-check is the following type of visualization, but more thorough in
 ```{r cos-plot-qc, warning=FALSE, fig.width=10, fig.height=5}
 #| code-fold: true
 df <- data.frame(colData(cos))
-ys <- c("detected", "total", "Area_um", "log2SignalDensity")
+# ys <- c("detected", "total", "Area_um", "log2SignalDensity")
+ys <- c("detected", "total", "Area_um", "log2CountArea")  # temporary update for Bioc 3.22
+                                                          # replaced with line above in Bioc 3.23
 ys <- c(grepv("Mean", names(df)), ys)
 fd <- pivot_longer(df, ys) |>
     mutate(value=case_when(
