@@ -146,13 +146,37 @@ plotCoords(spe, annotate="roi", point_size=0) + theme(legend.position="none")
 Next, we will convert the above SPE into a `r BiocStyle::Biocpkg("SpatialFeatureExperiment")` [@Moses2023-Voyager] that allows us to also store cell segmentation masks as a `colGeometry`.
 
 ```{r sfe}
-# convert from SPE to SFE
-sfe <- toSpatialFeatureExperiment(spe)
-# add cell segmentation boundaries
+# # convert from SPE to SFE
+# sfe <- toSpatialFeatureExperiment(spe)
+# # add cell segmentation boundaries
+# seg <- metadata(spe)$cellseg
+# i <- colnames(spe)
+# j <- match(i, seg$cell_id)
+# seg <- seg[j, ]; rownames(seg) <- i
+# colGeometries(sfe) <- list(cellseg=seg)
+```
+
+```{r sfe-3-22}
+# temporary updates for Bioc 3.22 build
+# this is replaced with the commented code above for Bioc 3.23
+
+# add bin-to-cell mapping information
+map <- list.files(td, "mapping", full.names=TRUE)
+head(map <- read_parquet(map))
+map_by_cell <- split(map, map$cell_id)
+idx <- match(colnames(spe), names(map_by_cell))
+spe$map <- map_by_cell[idx]
+spe$in_tissue <- TRUE
+
+# to SFE
+ids <- gsub("cellid_(.*)-1", "\\1", colnames(spe))
+spe$cell_id <- as.numeric(ids)
+
 seg <- metadata(spe)$cellseg
-i <- colnames(spe)
-j <- match(i, seg$cell_id)
-seg <- seg[j, ]; rownames(seg) <- i
+idx <- match(spe$cell_id, seg$cell_id)
+seg <- seg[idx, ]; rownames(seg) <- colnames(spe)
+
+sfe <- toSpatialFeatureExperiment(spe)
 colGeometries(sfe) <- list(cellseg=seg)
 ```
 
