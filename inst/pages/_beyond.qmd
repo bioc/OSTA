@@ -2,8 +2,8 @@
 
 {{< include _start.qmd >}}
 
-The analytical landscape of spatial omics is vast and continuously developing. 
-Here, we outline additional analyses tasks and topics not been covered elsewhere. 
+The analytical landscape of spatial omics is vast and continuously developing. Here, 
+we outline additional analysis tasks and topics that have not been covered elsewhere. 
 
 Throughout this book, we have emphasized the reproducibility standards provided 
 by the R/Bioconductor ecosystem. However, certain tasks -- particularly those 
