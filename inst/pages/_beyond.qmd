@@ -9,9 +9,9 @@ Throughout this book, we have emphasized the reproducibility standards provided
 by the R/Bioconductor ecosystem. However, certain tasks -- particularly those 
 involving machine and deep learning or intensive image analysis -- frequently 
 leverage the strengths of existing Python infrastructure. We consider these 
-ecosystems complementary, and we hope to address omissions in the future.
+ecosystems complementary, and hope to address omissions in the future.
 
-Finally, we view this chapter as a living resource and a community effort.
+Finally, we view this e-book as a living resource and a community effort.
 If you are a keen developer or researcher with expertise in these (or other) 
 analytical tasks, **we welcome contributions to expand these sections** into 
 full chapters, whether to provide deeper theory or to include code examples.
