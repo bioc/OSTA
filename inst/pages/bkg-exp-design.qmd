@@ -71,8 +71,8 @@ stored for **up to 20-30 years**, with approximately 60% of samples yielding
 usable libraries [@Hedegaard2014-FFPE]. Beyond this window, RNA-seq success 
 rates drop as fragmentation and chemical modifications become prohibitive.
 
-- **Protein:** Proteins are highly stable within the paraffin matrix of an intact 
-block for **at least a decade**. However, *antigenicity* (the ability of antibodies 
+- **Protein** are highly stable within the paraffin matrix of an intact block 
+for **at least a decade**. However, *antigenicity* (the ability of antibodies 
 to bind) is the most sensitive to environmental exposure once the block is cut.
 
 There is a critical distinction exists between **blocks** and **cut slides**: 
