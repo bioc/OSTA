@@ -26,7 +26,7 @@ In R/Bioconductor, linear methods like `r BiocStyle::Biocpkg("harmony")`
 [@Luecken2022]. And, the `r BiocStyle::Biocpkg("CellMixS")` [@Lutge2021-CellMixS] 
 package implements several metrics to evaluate batch effects and correction.
 
-In R/CRAN, `r BiocStyle::CRANpkg("satijalab/seurat")` implements different 
+In R/CRAN, `r BiocStyle::Githubpkg("satijalab/seurat")` implements different 
 options, including canonical correlation analysis (CCA) and also `harmony`
 (parameter defaults have changed between major releases). The variational 
 autoencoder-based Python tool `r BiocStyle::Githubpkg("scverse/scvi-tools")` 
