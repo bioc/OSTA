@@ -72,15 +72,28 @@ The [Vizgen MERSCOPE](https://vizgen.com/products/) platform, among the fluoresc
 
 ## Appendix
 
+::: {.callout-tip icon="false" title="Further reading"}
+
+- @Chen2015-MERFISH first describe multi-plex error-robust barcoded FISH (MERFISH), 
+including concepts around probe sequences (AGCT), fluorescent barcodes (RGB), Hamming 
+weight and distance, target decoding, as well as scalability and accuracy considerations. 
+
+- @He2022-CosMx (1K-plex) and @Khafizov2024-CosMx (whole-transcriptome) 
+describe the biotechnology underlying CosMx. While these studies were 
+authored by industry-affiliated researchers, they remain informative 
+references for understanding imaging-based ST that relies on high-plex
+error-robust barcoded FISH, field of views (FOVs), etc.
+
+- For commercial platforms, several resources 
+(e.g., gene panels, example datasets, software guides) 
+are available through the corresponding vendor sites, including 
+[CosMx (Bruker)](https://brukerspatialbiology.com/products/cosmx-spatial-molecular-imager),
+[MESCOPE (Vizgen)](https://vizgen.com/products/spatial-transcriptomics), and
+[Xenium (10x Genomics)](https://www.10xgenomics.com/platforms/xenium).
+
+:::
+
 ### Resources {.unnumbered}
-
-- Available datasets
-  - [Xenium (10x Genomics)](https://www.10xgenomics.com/datasets)
-  - [CosMx (NanoString)](https://nanostring.com/products/cosmx-spatial-molecular-imager/ffpe-dataset/)
-  - [MERSCOPE (Vizgen)](https://vizgen.com/data-release-program)
-- Platform-specific methods
-  - [CosMx analysis](https://nanostring-biostats.github.io/CosMx-Analysis-Scratch-Space)
-
 
 ### References {.unnumbered}
 
