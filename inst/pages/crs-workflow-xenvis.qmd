@@ -291,6 +291,17 @@ e.g., in order to identify cluster markers, annotate cell subpopulations etc.
 
 ## Appendix
 
+::: {.callout-tip icon="false" title="Further reading"}
+
+For further literature and resources on 
+cross-modal analyses, we refer readers to:
+
+- @sec-crs-registration on registration,
+- @sec-crs-imputation on imputation, and
+- [Beyond this book](#sec-beyond) on integration and multi-modality.
+
+:::
+
 ### References {.unnumbered}
 
 {{< include _stop.qmd >}}

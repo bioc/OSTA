@@ -435,8 +435,8 @@ on which niches with coherent communication pathways are identified.
 - [`Novae`](https://github.com/MICS-Lab/novae) [@Blampey2025-Novae] 
 is a graph-based **foundation model** (FM) that extracts representations 
 of cells within their spatial contexts; it was original trained on ~30M 
-cells from 18 tissues, different gene panels, and technologies.
-(see also "Beyond this book" for additional details on FMs).
+cells from 18 tissues, different gene panels, and technologies (see 
+also [Beyond this book](#sec-beyond) for additional details on FMs).
 
 - `r BiocStyle::Githubpkg("jianhuupenn/SpaGCN")` [@Hu2021-SpaGCN] combines gene 
 expression, spatial and histological information via a **graph convolutional 

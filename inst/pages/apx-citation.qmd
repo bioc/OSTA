@@ -565,7 +565,7 @@ benchmark, or other, references and resources mentioned throughout the book.
 
 :::
 
-- **Beyond this book**: Other analyses & concepts
+- [Beyond this book](#sec-beyond): Other analyses & concepts
 
 ::: {.tbl}
 
