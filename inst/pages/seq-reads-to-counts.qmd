@@ -158,6 +158,14 @@ A vignette demonstrating the workflow of stPipe for some example Visium data is 
 
 ## Appendix
 
+::: {.callout-tip icon="false" title="Further reading"}
+
+Data preprocessing procedures:
+
+- [**Visium data preprocessing**](https://lmweber.org/Visium-data-preprocessing/): Online book containing details on data preprocessing procedures for spatial transcriptomics data from the 10x Genomics Visium platform (using tools outside R and Bioconductor).
+
+:::
+
 ### References {.unnumbered}
 
 {{< include _stop.qmd >}}

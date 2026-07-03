@@ -126,6 +126,11 @@ compare platforms in terms of experimental design and analytical trade-offs,
 contextualizing methodological diversity by highlighting how approaches relate, 
 complement different experimental questions, and shape biological interpretation.
 
+- The [**Analysis workflow for IMC data**](https://bodenmillergroup.github.io/IMCDataAnalysis/) online book provides a workflow highlighting the use of R/Bioconductor packages to analyze single-cell data obtained from segmented imaging mass cytometry (IMC) images. Examples focus on IMC data and can also be applied to images obtained by other highly-multiplexed imaging technologies, e.g. CODEX, MIBI, and mIF.
+
+- `r BiocStyle::Biocpkg("VectraPolarisData")` is a Bioconductor data package providing multiplex single-cell imaging datasets collected on Vectra Polaris and Vectra 3 instruments.
+
+
 :::
 
 ### References {.unnumbered}
