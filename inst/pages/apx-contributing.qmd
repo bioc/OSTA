@@ -17,7 +17,7 @@ There are several motivations for contributing:
 
 You can contribute in many ways:
 
-- Reporting typographical errors, issues,N or unclear sections
+- Reporting typographical errors, issues, or unclear sections
 - Improving explanations of methods or workflows
 - Adding new example analyses or methodological extensions
 - Extending platform or technology coverage
