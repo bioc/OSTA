@@ -2,12 +2,11 @@
 
 {{< include _start.qmd >}}
 
-## Introduction
+## Contents and structure
 
-This book provides reproducible examples and discussion on computational analysis workflows for spatial omics data using [Bioconductor](https://bioconductor.org/) in R. The book contains chapters describing individual analysis steps as well as extended workflows, each with examples including R code and datasets. In some examples, R code is also integrated with Python tools.
+This book provides reproducible examples and discussion on computational analysis workflows for spatial omics data using [Bioconductor](https://bioconductor.org/) in R.
 
-
-## Contents
+The book contains discussion chapters, analysis chapters, and workflow chapters. The analysis and workflow chapters describe individual analysis steps as well as extended workflows, each with examples including R code and datasets. In some examples, R code is also integrated with Python tools.
 
 Book chapters are organized into several parts:
 
@@ -23,7 +22,7 @@ Book chapters are organized into several parts:
 
 - **Cross-platform analyses:** downstream analyses and workflows to integrate or combine information across platforms
 
-- **Appendices:** acknowledgments, related resources, and session information
+- **Appendices:** contributions, acknowledgments, related resources, and session information
 
 
 ## Scope and who this book is for
