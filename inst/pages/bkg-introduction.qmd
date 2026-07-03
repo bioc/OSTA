@@ -60,6 +60,8 @@ For readers who are new to R and/or Bioconductor, additional useful resources in
 
 We welcome feedback, suggestions, and contributions from readers in the research community. These may be provided as [GitHub issues](https://github.com/lmweber/OSTA) for further discussion with the developers. Note that all methods used within code examples must be available as packages from either Bioconductor or CRAN (in R) or PyPI (in Python), as discussed above.
 
+For more details on how to provide feedback and contributions, see @sec-apx-contributing.
+
 
 ## Source code
 

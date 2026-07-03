@@ -1,4 +1,4 @@
-# Contributing
+# Contributing {#sec-apx-contributing}
 
 OSTA is an open, community-driven resource that is designed to evolve alongside new methods, technologies, and best practices. Contributions are welcome from readers, users, and method developers, including feedback on clarity, suggestions for improvements, and extensions to existing content or workflows.
 
