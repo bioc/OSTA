@@ -58,6 +58,10 @@ Newer technologies try to move beyond this, either through truly volumetric
 measurements, or by computationally reconstructing them from serial sections 
 (2.5D); prospectively, time will remain the last dimension to unlock (4D).
 
+For a cancer-focused review of 3D spatial multi-omics atlas construction,
+including serial-section reconstruction, volumetric imaging, computational
+analysis, and clinical translation, see @Liu2026-3D-tumour-atlases.
+
 ### Reconstruction from serial sections
 
 A common strategy to capture 3D tissue architecture involves performing spatial 
