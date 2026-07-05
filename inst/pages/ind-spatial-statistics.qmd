@@ -48,7 +48,7 @@ bp <- MulticoreParam(4)
 set.seed(77)
 ```
 
-```{r, message=FALSE, warning=FALSE}
+```{r load-data, message=FALSE, warning=FALSE}
 # load dataset as SPE & convert to SFE
 spe <- Janesick_breastCancer_Xenium_rep1()
 sfe <- toSpatialFeatureExperiment(spe)

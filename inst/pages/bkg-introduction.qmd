@@ -8,6 +8,8 @@ This book provides reproducible examples and discussion on computational analysi
 
 The book contains discussion chapters, analysis chapters, and workflow chapters. The analysis and workflow chapters describe individual analysis steps as well as extended workflows, each with examples including R code and datasets. In some examples, R code is also integrated with Python tools.
 
+Chapters are generally structured according to their purpose. Background chapters introduce concepts, data formats, and infrastructure. Method-focused chapters usually begin with a short preamble, followed by dependencies, data setup, analysis sections, and an appendix with further reading and references. Workflow chapters use a similar structure, but emphasize a complete analysis path for one dataset. When a platform-specific chapter gives a compact demonstration of a general method, we link to the corresponding platform-independent chapter for broader context and alternatives.
+
 Book chapters are organized into several parts:
 
 - **Background:** introduction and background on spatial omics, data representations, related R/Bioconductor infrastructure, and interoperability with Python
