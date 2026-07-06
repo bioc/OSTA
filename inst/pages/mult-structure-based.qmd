@@ -306,7 +306,6 @@ qqline(resid(mod))
 
 :::
 
-
 ## Appendix
 
 ::: {.callout-tip icon="false" title="Further reading"}
