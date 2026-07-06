@@ -35,7 +35,7 @@ All contributions follow a GitHub-based workflow:
 4. Ensure the book renders successfully using Quarto
 5. Submit a pull request to the `sandbox` branch
   
-### ⚙️ Suggested structure for contributions {-}
+### 📋 Suggested structure for contributions {-}
 
 When proposing a new section, workflow, or substantial revision, please open a
 GitHub issue with the following information:
