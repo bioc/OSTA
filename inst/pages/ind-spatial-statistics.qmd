@@ -92,7 +92,7 @@ theme_xy <- list(
 ::: {.callout-tip icon="false" title="Further reading"}
 
 - This chapter has been adapted from the [**Harnessing the Potential of Spatial Statistics for Spatial Omics Data with `pasta`**](https://robinsonlabuzh.github.io/pasta) 
-[@Emons2025-pasta] online resource, which more comprehensively describes concepts from spatial statistics that apply to spatial -omics datasets, including point pattern- and 
+[@Emons2025-pasta] online resource, which more comprehensively describes concepts from spatial statistics that apply to spatial omics datasets, including point pattern- and 
 lattice-based uni- and multi-variate methods for img- and seq-based ST data.
 Notably, *pasta* also includes Python examples and more statistical detail,
 e.g., formal definitions and equations for different models and statistics.
