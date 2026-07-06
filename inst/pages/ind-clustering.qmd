@@ -21,6 +21,10 @@ The optimal number of clusters depends on the biological context -- in particula
 
 Once we have identified spatial domains, these can then be further investigated in additional downstream analyses.
 
+Spatial domain identification is one component of a broader analysis workflow.
+Other related tasks include classifying cellular neighborhoods or niches based on local cell-type composition (see @sec-img-neighborhood-analysis), identifying spatially variable genes (see @sec-ind-feature-selection-testing-svgs), estimating cell-type mixtures in spots (see @sec-seq-deconvolution), and modeling spatially constrained cell-cell communication (see @sec-img-cell-cell-communication).
+In this chapter, we focus on clustering cells or spots into spatial domains, while pointing readers to complementary chapters for other related analyses.
+
 ### Dependencies
 
 ```{r deps, message=FALSE, warning=FALSE}
@@ -112,10 +116,16 @@ table(spe$Banksy)
 Another category of spatially-aware clustering method uses encoder architectures to generate a latent embedding incorporating both spatial and transcriptomics information, which is then clustered using standard algorithms. 
 One typical example is `r BiocStyle::Githubpkg("CSOgroup/cellcharter")` [@Varrone2024-CellCharter], which uses a variational auto-encoder to generate a latent feature space and aggregate the features of each spot across its neighbors to preserve their spatial context. 
 
+Recent machine-learning approaches for spatial domain identification often construct a graph whose nodes represent spots or cells and whose edges encode spatial proximity, transcriptional similarity, histological similarity, or combinations thereof.
+Graph neural networks, graph attention autoencoders, variational autoencoders, contrastive learning, and foundation model embeddings can then be used to learn spatially informed representations before clustering.
+These methods can be powerful when tissue structure depends jointly on expression, local neighborhood composition, and histology, but they also introduce additional dependencies, hyperparameters, hardware requirements, and reproducibility considerations.
+
 ::: {.callout-note title="Other methods" collapse="true"}
 Several other published methods have also adopted encoder architectures in different ways to perform spatially-aware clustering. 
 `r BiocStyle::Githubpkg("zhanglabtools/STAGATE")` [@Dong2022-STAGATE] uses a graph attention autoencoder to integrate spatial and transcriptional data by modeling spatial neighborhoods as graphs, whereas `r BiocStyle::Githubpkg("Tang-Lab-super/PROST")` [@Liang2024-PROST] employs a self-attention transformer-based encoder to learn spatial patterns by jointly modeling gene expression and spatial coordinates. 
 Graph-based encoder methods, such as `STAGATE`, may be particularly well-suited for imaging-based ST data, as their ability to model spatial neighborhoods as graphs aligns naturally with the continuous and fine-grained spatial organization of tissues captured through imaging.
+Other examples include `r BiocStyle::Githubpkg("jianhuupenn/SpaGCN")` [@Hu2021-SpaGCN], `r BiocStyle::Githubpkg("JiangBioLab/DeepST")` [@Xu2022-DeepST], `r BiocStyle::Githubpkg("JinmiaoChenLab/GraphST")` [@Long2023-GraphST], `r BiocStyle::Githubpkg("hongleir/SpaceFlow")` [@Ren2022-SpaceFlow], `r BiocStyle::Githubpkg("Lotfollahi-lab/nichecompass")` [@Birk2025-NicheCompass], and `r BiocStyle::Githubpkg("MICS-Lab/novae")` [@Blampey2025-Novae].
+We demonstrate `CellCharter` here as one representative encoder-based workflow, and recommend benchmark and review papers below for method selection.
 :::
 
 ```{r env, warning=FALSE, eval=FALSE}
@@ -397,6 +407,11 @@ detect gene-level discrepancies.
 the reference; these may represent novel cell states or technical artifacts.
 
 ## Appendix
+
+When choosing among spatial clustering methods, we recommend starting from the biological question and data modality rather than from model complexity alone.
+Simpler spatially aware approaches may be preferable when interpretability, runtime, and reproducibility are priorities.
+Deep learning and graph-based methods may be more appropriate when histology, multi-modal features, or complex local tissue structure are central to the analysis.
+In all cases, spatial domains should be evaluated by marker genes, SVGs, histological concordance, parameter stability, and consistency with known tissue architecture where available.
 
 ::: {.callout-tip icon="false" title="Further reading"}
 

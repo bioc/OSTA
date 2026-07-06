@@ -9,6 +9,10 @@
 Neighborhood analysis aims to investigate the composition of and 
 interaction between cells and cell types within small regions of tissue, 
 which are referred to as neighborhoods or niches.
+This chapter addresses a complementary form of analysis to spatial domain clustering:
+instead of grouping cells or spots primarily by their own expression profiles, neighborhood and niche analyses summarize the local cellular environment around each cell or region.
+These methods are especially relevant for classifying cell neighborhoods, identifying tissue niches, and detecting recurring microenvironments.
+For spatial domain detection based on expression, coordinates, and learned embeddings, see @sec-ind-clustering.
 
 ### Dependencies
 
