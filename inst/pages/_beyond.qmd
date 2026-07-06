@@ -31,6 +31,8 @@ For readers interested in further details on mathematical and statistical founda
 
 - [Deep Learning with Python](https://deeplearningwithpython.io/) by F. Chollet (Manning Publications (2021), ISBN: 9781617296864) provides a practical introduction to deep learning and generative AI, from core neural network concepts to modern architectures such as transformers and diffusion models. Through hands-on projects and code examples, it develops the intuition and skills needed to build and understand state-of-the-art AI systems.
 
+- [Introduction to Data Science](https://rafalab.dfci.harvard.edu/dsbook-part-2/) by R. Irizarry (Chapman & Hall/CRC (2024), ISBN: 9781032116556) consists of six parts: Summary Statistics, Probability, Statistical Inference, Linear Models, High-Dimensional Data, and Machine Learning. Foundational concepts are introduced through examples, followed by applied case studies that integrate these ideas. Chapters are designed for single-lecture delivery and include practical exercises in R; all data and the book’s source code are available online.
+
 :::
 
 ## Integration
