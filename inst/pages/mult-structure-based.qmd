@@ -309,15 +309,19 @@ qqline(resid(mod))
 
 ## Appendix
 
-This chapter is based on the `r BiocStyle::Biocpkg("sosta")` vignette 
-"2. Reconstruction and analysis of pancreatic islets from IMC data".
+::: {.callout-tip icon="false" title="Further reading"}
 
-Additional packages to calculate anatomical structure-derived features include:
+- This chapter is based on the `r BiocStyle::Biocpkg("sosta")` vignette "2. Reconstruction and analysis of pancreatic islets from IMC data"; more detail is provided in @Gunz2025-sosta.
 
-* The Bioconductor packages `r BiocStyle::Biocpkg("SPIAT")` and `r BiocStyle::Biocpkg("imcRtools")` offer other functions to quantify features on the anatomical structure level. These could also be input for mixed effect modeling as illustrated above.
+- The Bioconductor packages `r BiocStyle::Biocpkg("SPIAT")` and `r BiocStyle::Biocpkg("imcRtools")` offer other functions to quantify features on the anatomical structure level. These could also be input for mixed effect modeling as illustrated above.
 
-* The packages `r BiocStyle::CRANpkg("vegan")` and `r BiocStyle::Biocpkg("poem")` are useful when calculating diversity metrics within structures and/or border regions. To identify border regions and how to overlap anatomical regions with sample coordinates, please have a look at the `r BiocStyle::Biocpkg("sosta")` vignette.
+- The packages `r BiocStyle::CRANpkg("vegan")` and `r BiocStyle::Biocpkg("poem")` are useful when calculating diversity metrics within structures and/or border regions. To identify border regions and how to overlap anatomical regions with sample coordinates, please have a look at the `r BiocStyle::Biocpkg("sosta")` vignette.
 
+- The Python package [GRIDGENE](https://demirandalab-gridgen.readthedocs.io/en/latest/) [@Sequeira2025-GRIDGENE] offers methods for performing structure-based analysis based on transcript density. 
+
+- The Python package [CellCharter](https://cellcharter.readthedocs.io/en/latest/) [@Varrone2024-CellCharter] allows for spatial clustering and offers approaches for the reconstruction of spatial structures as well as calculation of some geometric metrics.
+
+:::
 
 ### References {.unnumbered}
 
