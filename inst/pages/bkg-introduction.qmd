@@ -24,7 +24,7 @@ Book chapters are organized into several parts:
 
 - **Cross-platform analyses:** downstream analyses and workflows to integrate or combine information across platforms
 
-- **Appendices:** contributions, citation, acknowledgments, and session information
+- **Appendices:** contributing, citation, acknowledgments, and session information
 
 
 ## Scope and who this book is for
