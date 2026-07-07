@@ -170,7 +170,7 @@ https://www.bioconductor.org/packages/devel/bioc/vignettes/spicyR/inst/doc/spicy
 The `r BiocStyle::Biocpkg("spatialFDA")` package computes spatial summaries 
 as functions (e.g., Ripley's $K$ function) and compares them using tools from 
 functional data analysis (FDA). We will consider the colocalization (spacing) 
-of alpha cells in the islet and cytoxic T-cells, which are important in the 
+of alpha cells in the islet and cytotoxic T-cells, which are important in the
 destruction of islet cells in T1D [@Damond2019-IMC-diabetes].
 
 ::: {.aside}
@@ -269,7 +269,7 @@ plotCrossHeatmap(resLs,
     guides(shape="none") + facet_wrap(~factor(coefficient, coefs, names(coefs)))
 ```
 
-This plot highlights an increased co-localisation of T-cell types with 
+This plot highlights an increased co-localization of T-cell types with
 pancreatic $\alpha$ cells in Onset diabetes but not in Long-duration diabetes. 
 This is an interesting overall finding and we will focus on the cell type pair 
 $\alpha$-cytotoxic T cells in more detail below.
@@ -354,9 +354,9 @@ qqnorm(res, pch=16)
 qqline(res, col="red")
 ```
 
-In summary, we have seen that there is increased co-localisation of T-cell types
+In summary, we have seen that there is increased co-localization of T-cell types
 to the pancreatic islets early in the disease and that this recruitment is absent
-later in the disease. This increased co-localisation in onset diabetes is happening
+later in the disease. This increased co-localization in onset diabetes is happening
 at shorter scales around $\alpha$ cells indicating that effects close to the 
 pancreatic islets are more affected than those further away.
 

@@ -62,7 +62,7 @@ bp <- MulticoreParam(4)
 Here we run `r BiocStyle::Githubpkg("zcang/COMMOT")` [@Cang2023-COMMOT], an 
 optimal transport-based approach that models competition between sender and 
 receiver signals, can account for multimeric interactions, considers cell-cell 
-distances, and is linked to databases of signalling interactions and pathways. 
+distances, and is linked to databases of signaling interactions and pathways.
 
 Since `COMMOT` is available as a Python package, we can access it from R using 
 `r BiocStyle::Biocpkg("reticulate")` with a Conda environment (see 
@@ -116,7 +116,7 @@ ss <- strsplit(lr, "-")
 gs <- sapply(ss, .subset, 1)
 length(unique(unlist(gs)))
 
-# filer for those fully covered by the panel
+# filter for those fully covered by the panel
 keep <- apply(db, 1, \(.) {
     rs <- strsplit(.["receptor"], "_")
     lr <- c(.["ligand"], unlist(rs))
@@ -193,7 +193,7 @@ for (df in ccc) colData(sub)[names(df)] <- df
 
 An important consideration is the distance threshold to impose on CCC inference 
 (argument `dis_thr` in the code chunk below). Ideally, this decision is **based 
-on a biological expectation on cell size and signalling range**. Estimates on 
+on a biological expectation on cell size and signaling range**. Estimates on
 the distance over which immune cell signaling can occur, for example, measured 
 interactions on length scales of 80-120$\mu$m [@OylerYaniv2017].
 
@@ -225,10 +225,10 @@ text(d+1, 12e3, adj=c(0,1), round(d, 2), col="red")
 ### In space
 
 Visualizing the above data across the tissue, we will typically observe that 
-expression and signalling values give similar spatial patterns, but the latter 
+expression and signaling values give similar spatial patterns, but the latter
 will be restricted to where ligand and receptor-expressing cells co-localize.
 
-For simplicity, we pick a single interaction (CXCL12-CXCR4 signalling); 
+For simplicity, we pick a single interaction (CXCL12-CXCR4 signaling);
 here, `s` and `r` correspond to sender and receiver signal, respectively:
 
 ```{r viz-xy, message=FALSE, fig.width=12, fig.height=4}
@@ -255,7 +255,7 @@ lapply(seq_along(xs), \(.) {
 
 ::: {.callout-note title="CCC vs. expression" collapse="true"}
 
-Let's compare gene expression values with cell-cell signalling estimates:
+Let's compare gene expression values with cell-cell signaling estimates:
 
 ```{r viz-es, fig.width=6, fig.height=3}
 #| code-fold: true
@@ -270,12 +270,12 @@ ggplot(df, aes(CXCR4, r.CXCL12.CXCR4)) +
 ```
 
 We can observe that x- and y-values are similar for only a subset of cells.
-A portion of cells expresses CXCL12/CXCR4, but takes on 0 signalling values.
-In between, signalling estimates fall below the corresponding expression values.
+A portion of cells expresses CXCL12/CXCR4, but takes on 0 signaling values.
+In between, signaling estimates fall below the corresponding expression values.
 
 This makes sense, knowing that `COMMOT` considers physical cell-cell distances. 
-I.e., some cells express CXCL12/CXCR4, but are too distant from cells expressing CXCR4/CXCL12, and are thus deemed to *not* be involved in signalling. 
-Meanwhile, there is a penalty on signalling in proportion to the distance between sender and receiver cells, as well as competition between proximal cells, yielding non-zero but lower-than-expression values.
+I.e., some cells express CXCL12/CXCR4, but are too distant from cells expressing CXCR4/CXCL12, and are thus deemed to *not* be involved in signaling.
+Meanwhile, there is a penalty on signaling in proportion to the distance between sender and receiver cells, as well as competition between proximal cells, yielding non-zero but lower-than-expression values.
 
 :::
 
@@ -394,7 +394,7 @@ listed below, each with its own methodological nuances:
 
 - `r BiocStyle::Githubpkg("drieslab/Giotto")` [@Chen2025-Giotto-Suite] detects increased co-expression of LR pairs in neighboring cells of different types via comparison to randomly shuffled cell locations (permutation test).
 
-- `r BiocStyle::Githubpkg("jinworks/CellChat")` [@Jin2025-CellChat] quantifies CCC signalling probability between two groups of cells using a simplified mass action-based model, which incorporates core LR interaction with potential multimeric structure and modulation by cofactors.
+- `r BiocStyle::Githubpkg("jinworks/CellChat")` [@Jin2025-CellChat] quantifies CCC signaling probability between two groups of cells using a simplified mass action-based model, which incorporates core LR interaction with potential multimeric structure and modulation by cofactors.
 
 - `r BiocStyle::Githubpkg("StatBiomed/SpatialDM")` [@Li2023-SpatialDM] uses a bivariate extension of Moran's $I$ -- a measure of spatial autocorrelation (cf., @sec-ind-spatial-statistics) -- to test LR pairs in close-range distance against independence.
 

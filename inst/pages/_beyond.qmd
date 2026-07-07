@@ -15,7 +15,7 @@ Finally, we view this e-book as a living resource and a community effort.
 If you are a keen developer or researcher with expertise in these (or other) 
 analytical tasks, **we welcome contributions to expand these sections** into 
 full chapters, whether to provide deeper theory or to include code examples.
-Please refer to our [contribution guidelines](@sec-apx-contributing).
+Please refer to the contribution guidelines in @sec-apx-contributing.
 
 ## Methodological foundations
 

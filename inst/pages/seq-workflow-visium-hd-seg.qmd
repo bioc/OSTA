@@ -6,7 +6,7 @@
 
 ### Introduction
 
-As of June 2025, Visium HD enables direct output of H&E-segmented cell-level data, in addition to the previous `binned_outputs` at 2, 8, and 16 µm, from [SpaceRanger v4](https://www.10xgenomics.com/analysis-guides/segmentation-visium-hd). This update simplifies the additional cell segmentation required when using `r BiocStyle::Githubpkg("Teichlab/bin2cell)")` [@Polanski2024-bin2cell] or `r `BiocStyle::Githubpkg("stardist/stardist")` [@Weigert2022-StarDist]. However, a comparative study of segmentation methods on Visium HD data has yet to be conducted. The morphology-driven, nucleus-based segmentation produces polygons representing nuclei and cells across the entire tissue, as illustrated in the schematics provided by 10x Genomics.
+As of June 2025, Visium HD enables direct output of H&E-segmented cell-level data, in addition to the previous `binned_outputs` at 2, 8, and 16 µm, from [Space Ranger v4](https://www.10xgenomics.com/analysis-guides/segmentation-visium-hd). This update simplifies the additional cell segmentation required when using `r BiocStyle::Githubpkg("Teichlab/bin2cell")` [@Polanski2024-bin2cell] or `r BiocStyle::Githubpkg("stardist/stardist")` [@Weigert2022-StarDist]. However, a comparative study of segmentation methods on Visium HD data has yet to be conducted. The morphology-driven, nucleus-based segmentation produces polygons representing nuclei and cells across the entire tissue, as illustrated in the schematics provided by 10x Genomics.
 
 ```{r fig-10x-vhdseg, echo = FALSE, out.width = "50%", fig.cap= "Two approaches for binning the 2x2 µm barcode squares in Visium HD data"}
 knitr::include_graphics("../images/VisiumHD_nuclei_segmentation_binning_10x.png")
@@ -55,7 +55,7 @@ set.seed(777)
 
 ### From SPE...
 
-Analogous to other chapters, we start out by retrieving data files from the OSF repository using `r BiocStyle::Biocpkg("OSTA.data")`. Output files from SpaceRanger v4 are located under `/segmented_outputs` (see @sec-bkg-importing-data for details on Visium HD output structure).
+Analogous to other chapters, we start out by retrieving data files from the OSF repository using `r BiocStyle::Biocpkg("OSTA.data")`. Output files from Space Ranger v4 are located under `/segmented_outputs` (see @sec-bkg-importing-data for details on Visium HD output structure).
 We can read these cell-level data into R as a `r BiocStyle::Biocpkg("SpatialExperiment")` [@Righelli2022-SpatialExperiment] using `r BiocStyle::Biocpkg("VisiumIO")`'s `TENxVisiumHD()` function by specifying the `segmented_outputs` argument accordingly. 
 
 ```{r load-data, message=FALSE, warning=FALSE}
@@ -81,7 +81,7 @@ rownames(spe) <- make.unique(gs)
 spe$in_tissue <- TRUE
 ```
 
-`SpaceRanger` also provides information on the mapping between binned outputs 
+`Space Ranger` also provides information on the mapping between binned outputs
 (2, 8, 16um) and segmented cells. These are stored as cell metadata slot `map`:
 
 ```{r add-mapping, message=FALSE, warning=FALSE}
@@ -137,7 +137,7 @@ ncol(spe <- sub)
 
 We also specify a much smaller region of interest (ROI) for visualization purposes.
 
-```{r fig.width=3, fig.height=3}
+```{r vhdseg-plot-roi, fig.width=3, fig.height=3}
 roi <- c(xmin=54e3, xmax=58e3, ymin=12e3, ymax=16e3)
 spe$roi <- colnames(spe) %in% colnames(.crop(spe, roi))
 plotCoords(spe, annotate="roi", point_size=0) + theme(legend.position="none")
@@ -200,7 +200,7 @@ ncs <- lapply(bin, \(um) {
 sapply(ncs, summary)
 ```
 
-```{r echo=FALSE}
+```{r vhdseg-bin-cell-summary, echo=FALSE}
 max <- sapply(ncs, max)
 med <- sapply(ncs, median)
 q75 <- sapply(ncs, quantile, 0.75)
@@ -214,7 +214,7 @@ most `r max[1]`/`r max[2]` cells are mapped to any bin.
 
 ### Non-spatial
 
-We can caluclate standard cell-level quality control metrics using 
+We can calculate standard cell-level quality control metrics using
 `r BiocStyle::Biocpkg("scrapper")`'s `quickRnaQc.se()` function,
 specifying mitochondrial features as `subsets` of particular interest.
 
@@ -227,7 +227,7 @@ head(colData(sfe)[c(
     "sum", "subset.proportion.mt")])
 ```
 
-```{r message=FALSE, fig.width=8, fig.height=4}
+```{r vhdseg-plot-qc-spatial, message=FALSE, fig.width=8, fig.height=4}
 #| code-fold: true
 plotSpatialFeature(sfe[, sfe$roi], 
     colGeometryName="cellseg", 
@@ -244,7 +244,7 @@ plot_layout(nrow=1) &
 
 ### Spatially-aware
 
-`r BiocStyle::Biocpkg("Spotsweeper")` [@Totty2025-SpotSweeper] determines 
+`r BiocStyle::Biocpkg("SpotSweeper")` [@Totty2025-SpotSweeper] determines
 outliers based on low log-library size, few uniquely detected features, or 
 a high mitochondrial fraction compared to their surrounding neighborhood, 
 which we recommend (see @sec-seq-quality-control).
@@ -264,7 +264,7 @@ sfe <- localOutliers(sfe,
 cd <- colData(sfe)
 ol <- grep("outliers$", names(cd))
 ol <- as.matrix(cd[ol])
-# percentage of cells exluded for each 
+# percentage of cells excluded for each
 round(100*colMeans(ol), 2)
 # number of cells kept/removed overall
 table(sfe$ex <- rowAnys(ol))
@@ -416,7 +416,7 @@ Instead, we quickly inspect how cell and nucleus areas differ across
 compartments and subpopulations. As expected, immune cells are smallest, 
 tumor and structural cells (epithelial and stromal cells) tend to be larger.
 
-```{r fig.width=5, fig.height=3.5}
+```{r vhdseg-plot-cell-area, fig.width=5, fig.height=3.5}
 #| code-fold: true
 # wrangling
 df <- data.frame(colData(sfe))

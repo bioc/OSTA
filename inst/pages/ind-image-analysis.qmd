@@ -70,7 +70,7 @@ Quantitative IF image **analysis** typically involves several steps:
 
 - Feature extraction, capturing intensity, co-localization, and texture metrics;
 
-- Spatial analysis, to measure cell–cell interactions and neighborhood structures.
+- Spatial analysis, to measure cell-cell interactions and neighborhood structures.
 
 Modern open-source software platforms such as QuPath and Napari provide powerful tools for the visualization, annotation, and quantitative analysis of both H&E and IF images.
 

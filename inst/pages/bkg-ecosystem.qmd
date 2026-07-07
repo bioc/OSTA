@@ -189,7 +189,7 @@ spatial omics data analysis. Secondly, we will visualize their co-occurrence.
 
 ::: aside
 
-Note that packages can list an arbitary number of terms so that packages can be 
+Note that packages can list an arbitrary number of terms so that packages can be
 counted in more than one category; e.g., "Visualization" appears in *most*.
 
 :::

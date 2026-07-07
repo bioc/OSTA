@@ -197,7 +197,7 @@ benchmark, or other, references and resources mentioned throughout the book.
 
 | | |
 |-|-|
-| `r Githubpkg("scverse/anndata")`` | @Virshup2024-anndata | 
+| `r Githubpkg("scverse/anndata")` | @Virshup2024-anndata |
 | `r Biocpkg("anndataR")` | @Deconinck2026-anndataR |
 | `r Biocpkg("basilisk")` | @Lun2022-basilisk |
 | [reticulate](https://rstudio.github.io/reticulate/) | @Ushey2017-reticulate |
@@ -216,7 +216,7 @@ benchmark, or other, references and resources mentioned throughout the book.
 |-|-|
 | `r Biocpkg("Rsubread")` | @Liao2019-Rsubread |
 | `r Biocpkg("stPipe")` | @Xu2025-stPipe |
-| 10x Genomics' Visium | [SpaceRanger](https://www.10xgenomics.com/support/software/space-ranger) |
+| 10x Genomics' Visium | [Space Ranger](https://www.10xgenomics.com/support/software/space-ranger) |
 | STOmics' Stereo-seq | [SAW](https://en.stomics.tech/products/stomics-software/stomics-offline-software/list.html); @Gong2024-SAW |
 
 : {.striped tbl-colwidths="[33,66]"}
@@ -279,10 +279,10 @@ benchmark, or other, references and resources mentioned throughout the book.
 
 | | |
 |-|-|
-| `r Githubpkg("Teichlab/bin2cell)")` | @Polanski2024-bin2cell |
+| `r Githubpkg("Teichlab/bin2cell")` | @Polanski2024-bin2cell |
 | `r Githubpkg("stardist/stardist")` | @Weigert2022-StarDist |
 | `r Githubpkg("The-Mitra-Lab/SMURF")` | @Guo2025-SMURF |
-| SpaceRanger v4 | [10x Genomics](https://www.10xgenomics.com/analysis-guides/segmentation-visium-hd) |
+| Space Ranger v4 | [10x Genomics](https://www.10xgenomics.com/analysis-guides/segmentation-visium-hd) |
 | [Sanofi's ENACT pipeline](https://github.com/Sanofi-Public/enact-pipeline) | @Kamel2025-ENACT |
 
 : {.striped tbl-colwidths="[33,66]"}
@@ -368,7 +368,7 @@ benchmark, or other, references and resources mentioned throughout the book.
 | `r Githubpkg("bhavaygg/CellSP")` | @Aggarwal2025-CellSP |
 | `r Githubpkg("KrishnaswamyLab/MAGIC")` | @vanDijk2018-MAGIC |
 | `r Githubpkg("broadinstitute/Tangram")` | @Biancalani2021-Tangram |
-| `r Githubpkg("bhavaygg/InSTAnT")` | @Kumar2024-Instant |
+| `r Githubpkg("bhavaygg/InSTAnT")` | @Kumar2024-InSTAnT |
 | `r Githubpkg("salzman-lab/SPRAWL")` | @Bierman2024-SPRAWL |
 | [SpaGNN](https://github.com/coskunlab/spaGNN) | @Fang2023-SpaGNN |
 

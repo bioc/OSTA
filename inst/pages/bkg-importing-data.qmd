@@ -120,7 +120,9 @@ Reader functions from several Bioconductor packages can be used to import data f
 - `r BiocStyle::Biocpkg("SpatialFeatureExperiment")` provides functions to read CosMx, Xenium, MERSCOPE, and Visium(HD) as `SpatialFeatureExperiment` objects.
 
 
-### Examples
+## Appendix
+
+### Resources {.unnumbered}
 
 Examples showing how to read in raw data into R using functions from the Bioconductor packages listed above are included in the workflow chapters in this book (e.g. @sec-seq-workflow-visium-crc, @sec-seq-workflow-visium-hd-seg, @sec-img-workflow-xenium, and @sec-crs-workflow-xenvis). The datasets are described in more detail in @sec-bkg-example-datasets.
 

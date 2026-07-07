@@ -23,7 +23,7 @@ For large-scale datasets (say, 100,000s of cells or spots), *.h5* files allow fo
 
 ### *.parquet*
 
-Tabular data (e.g. segmentation boundaries, molecule locations) may arrive in the form of *.parquet* files. These may be interfaced with using `r BiocStyle::Biocpkg("arrow")`. Notably, `arrow`'s `read_parquet()` functions allows for delayed `r BiocStyle::CRANpkg("dplyr")` style operations, such as `filter()` and `select()`, allowing to query the data in a delayed fashion in order to, e.g., import only relevant parts into memory.
+Tabular data (e.g. segmentation boundaries, molecule locations) may arrive in the form of *.parquet* files. These may be interfaced with using `r BiocStyle::Biocpkg("arrow")`. Notably, `arrow`'s `read_parquet()` functions allows for delayed `r BiocStyle::CRANpkg("dplyr")` style operations, such as `filter()` and `select()`, allowing users to query the data in a delayed fashion in order to, e.g., import only relevant parts into memory.
 
 
 ### *.zarr*

@@ -40,8 +40,8 @@ knitr::include_graphics("../images/img-seg_Xenium.jpeg")
 The phenomenon of spatial bleeding has been nicely characterized by @Mitchel2026-cellAdmix:
 
 - Bleeding is **most frequent above/below and close to the periphery** of cells, i.e., in all physical dimensions.
-- Because bleeding occurs between proximal cells, **observed mixtures reflect biology** (i.e., certain cell types may attract or avoid one another -- in general, an especially in different spatial contexts such as healthy vs. diseased tissue regions).
-- Furthermore, **bleeding affects differential expression** (DE), such that genes reported as up-/down-regulated may reflect compositional differences in microenvironment.[Example: genes that are DE between fibroblasts located within stromal vs. tumor regions are dominated by markers of epithelia, which represent the malignant cell type]{.aside}
+- Because bleeding occurs between proximal cells, **observed mixtures reflect biology** (i.e., certain cell types may attract or avoid one another -- in general, and especially in different spatial contexts such as healthy vs. diseased tissue regions).
+- Furthermore, **bleeding affects differential expression** (DE), such that genes reported as up-/down-regulated may reflect compositional differences in microenvironment. [Example: genes that are DE between fibroblasts located within stromal vs. tumor regions are dominated by markers of epithelia, which represent the malignant cell type]{.aside}
 - Even 'perfect' 2D segmentation (in *xy*) would not eliminate these issues, as tissue sections represent slices through a three-dimensional system where cells may overlap (along *z*).
 
 By now, a few methods have been proposed to rectify segmentation boundaries and/or per-cell counts post hoc, e.g.:

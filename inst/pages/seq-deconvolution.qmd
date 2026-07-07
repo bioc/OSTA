@@ -186,7 +186,7 @@ dim(sce)
 
 ## RCTD
 
-Next, we perform deconvolution with `r BiocStyle::Biocpkg("spacexr")` (also known as RCTD)[@Cable2022-RCTD].
+Next, we perform deconvolution with `r BiocStyle::Biocpkg("spacexr")` (also known as RCTD) [@Cable2022-RCTD].
 [Note that RCTD can also be adapted to Visium HD data with `rctd_mode = "doublet"`, as demonstrated by [@deOliveira2025-high-def] and @sec-seq-workflow-visium-hd-seg.]{.aside}
 By default, `runRctd()`'s `rctd_mode = "doublet"` specifies at most two subpopulations coexist in a data unit (i.e. within a spot); here, we set `rctd_mode = "full"` in order to allow for an arbitrary number of subpopulations to be fit instead.
 
@@ -376,7 +376,7 @@ hm(prop.table(table(vis$anno, vis$RCTD_no_stroma), 2), string="RCTD_no_stroma")
 
 Overall, we observe agreement between the provided spot labels and the `RCTD` deconvolution derived annotations.
 Before cleaning up stromal, some immune cell types, such as dendritic and mast, never had a chance to have the highest cell type proportion. 
-On the left panel, among among all the spots annotated by `RCTD` as T cells, nearly all of them are from the "immune" type in the provided annotation. Strong agreements are also observed for spots with cell type of "DCIS1", "DCIS2", and "Invasive tumor".
+On the left panel, among all the spots annotated by `RCTD` as T cells, nearly all of them are from the "immune" type in the provided annotation. Strong agreements are also observed for spots with cell type of "DCIS1", "DCIS2", and "Invasive tumor".
 
 ::: {.callout-note title="PC regression" collapse="true"}
 Next, we prepare the principal components (PCs) needed to perform PC regression:

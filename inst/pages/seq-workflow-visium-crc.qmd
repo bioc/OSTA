@@ -113,7 +113,7 @@ lapply(names(ols), \(.)
     theme(plot.title=element_text(hjust=0.5), legend.key.size=unit(0, "lines"))
 ```
 
-It seems like low-quality spots are highly spatially organized, so that might might encourage us to not remove them, for now. We will see further below how the quality control metrics used here, and spots deemed to be `discarded`, are distributed across (transcription-based) clusters.
+It seems like low-quality spots are highly spatially organized, so that might encourage us to not remove them, for now. We will see further below how the quality control metrics used here, and spots deemed to be `discarded`, are distributed across (transcription-based) clusters.
 
 ## Processing
 
@@ -338,9 +338,9 @@ var <- colVars(res) # variance across spots
 top <- names(tail(sort(var), 8)) # top sets
 ```
 
-To summarize, MYC signalling is absent in stromal regions; the fibroblast ring 
+To summarize, MYC signaling is absent in stromal regions; the fibroblast ring
 surrounding a cancerous patch exhibits EMT, angiogenesis, etc.; INFa response 
-and TNFa signalling is patch-like in both stroma and malignant epithelia.
+and TNFa signaling is patch-like in both stroma and malignant epithelia.
 
 ```{r plt-auc-xy, message=FALSE, fig.width=11, fig.height=6}
 #| code-fold: true

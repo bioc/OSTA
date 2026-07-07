@@ -347,7 +347,7 @@ Such models (e.g., `scFoundation` [@Hao2024-scFoundation], `scGPT` [@Cui2024-scG
 and `Geneformer` [@Theodoris2023-Geneformer]) can be used zero-shot or fine-tuned 
 to classify cell types across diverse tissues and platforms with high accuracy.
 
-### References
+### Reference datasets
 
 Some annotation approaches rely on high-quality single-cell reference datasets. 
 In this context, so-called *atlas* efforts aim to generate expert-curated, 

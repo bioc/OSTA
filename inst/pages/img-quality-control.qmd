@@ -129,7 +129,7 @@ to several thousands (e.g., the 5k Xenium panel or the 6k and 18k CosMx panels).
 Hence, unlike in sequencing-based platforms, we may not have enough
 ribosomal or mitochondrial transcripts to use for computing QC metrics. 
 However, imaging-based platforms provide a set of negative probes 
-that can be used to check for aspecific RNA captures.
+that can be used to check for nonspecific RNA captures.
 
 Finally, imaging-based platforms include, in addition to transcripts data, 
 morphology information (such as area and eccentricity of segmented cells) 
@@ -476,7 +476,7 @@ for total counts and `r sum(cos$Area_um_outlier_mc != "NO")` outliers for area.
 Finally, we can compute an aggregated quality score, which combines a cell's 
 transcript density, aspect ratio and (for CosMx) distance from FOV borders.
 
-Specifically, `r BiocStyle::Biocpkg("SpaceTrooper")`'s `computeQCScore` function will compute a combined quality score based on count density (`log2SignalDensity`), cell aspect ratio (`log2AspectRatio`), only for cells closer than a specified distance from FOV borders, and control-to-total count ratio (`log2Ctrl_total_ratio`). The count density is computed as the ratio between the per cell total gene counts divided by the cell area; the aspect ratio represents FOV border effect typical of CosMx datasets; the control-to-total ratio is the ratio between counts for control probes and total counts per cell and represents aspecific signal.
+Specifically, `r BiocStyle::Biocpkg("SpaceTrooper")`'s `computeQCScore` function will compute a combined quality score based on count density (`log2SignalDensity`), cell aspect ratio (`log2AspectRatio`), only for cells closer than a specified distance from FOV borders, and control-to-total count ratio (`log2Ctrl_total_ratio`). The count density is computed as the ratio between the per cell total gene counts divided by the cell area; the aspect ratio represents FOV border effect typical of CosMx datasets; the control-to-total ratio is the ratio between counts for control probes and total counts per cell and represents nonspecific signal.
 
 ::: {.aside}
 The quality score is computed using a ridge logistic regression model, which predicts a score between 0 and 1, where higher scores indicate better quality cells, using the following model forumla: `~(log2SignalDensity + Area_um + log2Ctrl_total_ratio + I(abs(log2AspectRatio) * as.numeric(dist_border<50)))^2`, where the `^2` notation indicates all pairwise interactions among the included variables. See `?computeQCScore` for details.

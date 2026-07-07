@@ -1,4 +1,4 @@
-# Experimental design {#sec-experimental-design}
+# Experimental design {#sec-bkg-exp-design}
 
 {{< include _start.qmd >}}
 
@@ -10,7 +10,7 @@ that introduces unique challenges, from sampling bias to tissue artifacts.
 
 This chapter touches on a few design considerations, including the lifecycle 
 of a tissue sample (from biopsy to measurement), key concepts of replication, 
-as well as strategies to guide panel and regions of interest (ROI) selection.
+as well as strategies to guide panel and region of interest (ROI) selection.
 
 ## Sample lifecycle \& artifacts
 
@@ -65,17 +65,17 @@ macromolecules remain remarkably stable for decades if stored at room temperatur
 stored for **over 40-50 years** with minimal quality impact [@Kokkat2013-FFPE], 
 making archival cohorts a robust resource for retrospective genomic studies.
 
-- **RNA** is more sensitive than RNA, yet still highly durable. 
-High-quality whole-transcriptome data has be recovered from FFPE blocks 
+- **RNA** is more sensitive than DNA, yet still highly durable.
+High-quality whole-transcriptome data has been recovered from FFPE blocks
 stored for **up to 20-30 years**, with approximately 60% of samples yielding 
 usable libraries [@Hedegaard2014-FFPE]. Beyond this window, RNA-seq success 
 rates drop as fragmentation and chemical modifications become prohibitive.
 
-- **Protein** are highly stable within the paraffin matrix of an intact block 
+- **Proteins** are highly stable within the paraffin matrix of an intact block
 for **at least a decade**. However, *antigenicity* (the ability of antibodies 
 to bind) is the most sensitive to environmental exposure once the block is cut.
 
-There is a critical distinction exists between **blocks** and **cut slides**: 
+There is a critical distinction between **blocks** and **cut slides**:
 while blocks are stable for years, once sections are cut and placed on slides, 
 macromolecules -- especially RNA and protein antigenicity -- degrade due to 
 surface oxidation. For spatial omics, immediate use or vacuum-sealing of cut 
@@ -109,7 +109,7 @@ rather than full-length transcript integrity [@Ke2013; @Chen2015-MERFISH].
 Particularly for image-based ST, **histological QC** is often 
 more reliable still, using both H&E staining (assessment of cellular detail, 
 tissue architecture, and overall histological integrity) and DAPI staining 
-(nuclear quality assessment). Beyond this, these staining serve several 
+(nuclear quality assessment). Beyond this, these stains serve several
 practical purposes such as confirming FFPE block orientation, region of interest 
 (ROI) selection, and identifying problematic areas such as necrosis, hemorrhage, 
 or artifact-rich zones (see above) that could compromise molecular profiling.
@@ -201,7 +201,7 @@ data on ten million cells from ten patients does not mean clinical relevance.
 ### (Spatial) power analysis
 
 In bulk and single-cell RNA-seq, traditional power analysis estimates the 
-sample size and sequencing depth needed to reliably detect changes expression. 
+sample size and sequencing depth needed to reliably detect changes in expression.
 In spatial omics, we must also account for the spatial arrangement of cells. 
 Spatial power analysis aims to address this additional layer of complexity,
 e.g., by considering the following:
@@ -221,7 +221,7 @@ i.e., "virtual" tissue structures that can help guide experimental design
 
 ### Tissue microarrays (TMAs)
 
-Dating back to the 90s, well before ST came to field, TMAs have become 
+Dating back to the 90s, well before ST came to the field, TMAs have become
 a primary vehicle for scaling spatial studies to large-scale cohorts 
 [@Kononen1998-TMA]. There are several points of note here:
 
@@ -267,7 +267,7 @@ In addition to higher cost, higher plexity can decrease spot-calling accuracy (d
 to molecular crowding) and increase spatial bleeding (see also @sec-img-segmentation).
 :::
 
-### Selection microdissection sites
+### Selecting microdissection sites
 
 Some technologies like [Bruker's GeoMx](https://brukerspatialbiology.com/products/geomx-digital-spatial-profiler/) 
 require pre-selecting **regions of interest (ROIs)** for molecular profiling. 

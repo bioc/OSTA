@@ -8,7 +8,7 @@
 
 Spatial omics data allow us to quantify various features that are related to tissue architecture. This allows us to perform comparisons of anatomical structure-derived features. We will refer to this type of analysis as **structure-based analysis**.
 
-We will use the `r BiocStyle::Biocpkg("sosta")` package [@Gunz2025-sosta] to reconstruct and quantify pancreatic islets from human donors suffering different stages of diabetic type 1 (T1D) and healthy controls [@Damond2019-IMC-diabetes]. We will then compare some of the features between conditions.
+We will use the `r BiocStyle::Biocpkg("sosta")` package [@Gunz2025-sosta] to reconstruct and quantify pancreatic islets from human donors with different stages of type 1 diabetes (T1D) and healthy controls [@Damond2019-IMC-diabetes]. We will then compare some of the features between conditions.
 
 This chapter is closely related to the spatial statistics and neighborhood concepts introduced in @sec-ind-spatial-statistics and @sec-img-neighborhood-analysis, but it summarizes those spatial patterns as structure-level geometric features before comparing groups of samples.
 
@@ -255,9 +255,9 @@ ggplot(df, aes(patient_id, value^(1/4), fill=patient_stage)) +
 
 ## Between-sample comparison
 
-An important aspect to note is that the individual structure metrics are not independent measurements, since there are generally repeated measurments (i.e., multiple islets) per slide and per patient. Therefore, we need to account for this correlation between measurements.
+An important aspect to note is that the individual structure metrics are not independent measurements, since there are generally repeated measurements (i.e., multiple islets) per slide and per patient. Therefore, we need to account for this correlation between measurements.
 
-To account for this, we will use mixed linear models with random effects for the patient and the individual slides (image name). The `r BiocStyle::CRANpkg("lme4")` package will be use for fitting linear mixed effects models [@Bates2015-lme4] and `r BiocStyle::CRANpkg("lmerTest")` for p-value calculations [@Kuznetsova2017-lmerTest].
+To account for this, we will use mixed linear models with random effects for the patient and the individual slides (image name). The `r BiocStyle::CRANpkg("lme4")` package will be used for fitting linear mixed effects models [@Bates2015-lme4] and `r BiocStyle::CRANpkg("lmerTest")` for p-value calculations [@Kuznetsova2017-lmerTest].
 
 ::: {style="max-height:500px; overflow-y: auto;"}
 

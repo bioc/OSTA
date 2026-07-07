@@ -51,7 +51,7 @@ These methods could be categorized into two classes, where some incorporate
 
 ### Image-based
 
-To facilitate alignment using images, we will showcase how to incorporate `r BiocStyle::Githubpkg("BIMSBBioinfo/VoltRon")` to align a `r BiocStyle::Biocpkg("SpatialExperiment")` object of Xenium data with a post-Xenium hematoxylin and eosin (H&E) stain of the same tissue section.
+To facilitate alignment using images, we will showcase how to incorporate `r BiocStyle::Githubpkg("BIMSBbioinfo/VoltRon")` to align a `r BiocStyle::Biocpkg("SpatialExperiment")` object of Xenium data with a post-Xenium hematoxylin and eosin (H&E) stain of the same tissue section.
 
 The `SpatialExperiment` of the Xenium data does not include any images. 
 To perform the spatial alignment via image registration, we first add an image of the corresponding DAPI staining to the object's `imgData`.
