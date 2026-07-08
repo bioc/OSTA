@@ -154,46 +154,6 @@ demonstrating applicability to different platforms (Xenium, CosMx, etc.).
 
 :::
 
-## Foundation models
-
-Foundation models (FMs) represent a modern paradigm where massive deep learning
-architectures (e.g., transformers) are pre-trained on millions of single-cell 
-profiles, biological images, etc., to learn generalizable representations. 
-All of these models are developed and implemented in Python, although R
-infrastructure to interface with pre-trained models are underway, i.e.,
-making use of model weights and embeddings for downstream analysis.
-
-Examples (mostly) mentioned across different chapters include 
-Prov-GigaPath [@xu2024gigapath] (histopathology; @sec-ind-image-analysis); 
-Geneformer [@Theodoris2023-Geneformer], scGPT [@Cui2024-scGPT], scFoundation 
-[@Hao2024-scFoundation], and Novae [@Blampey2025-Novae] (omics; @sec-ind-clustering). 
-For spatial omics, these models increasingly overlap with spatial domain and neighborhood analysis by providing embeddings that can be clustered, compared across samples, or used as input to downstream analyses; see @sec-ind-clustering and @sec-img-neighborhood-analysis for representative domain and niche workflows.
-Not an FM but worth mentioning: `r BiocStyle::Githubpkg("OmicsML/CellPLM")` 
-[@Wen2023-CellPLM] is a pre-trained "cell language model" with cells = tokens 
-and tissues = sentences (an idea inspired by large language models); the model 
-supports several downstream tasks such as denoising and annotation of scRNA-seq 
-data, imputation of ST data, and perturbation prediction.
-
-Another popular task not mentioned in previous chapter is the prediction 
-of molecular changes upon perturbation (e.g., disease, treatment response); 
-however, deep learning-based approaches for this task have been shown 
-to not (yet) outperform simple linear baselines [@AhlmannEltze2025].
-Out-performance by simpler methods has also been demonstrated 
-by @Kedzierska2025 in the context of cell type annotation.
-
-::: {.callout-tip icon="false" title="Further reading"}
-
-- @Szalata2024 describe, review, and discuss future directions of 
-transformers in single-cell omics: a popular architecture for FMs.
-
-- @AhlmannEltze2025 demonstrates that linear models yield better 
-performance than more sophisticated deep learning-based approaches.
-
-- @AhlmannEltze2026 review tasks and challenges around representation learning 
-of scRNA-seq data, including transformer-based FMs, autoencoders, and more.
-
-:::
-
 ## Multi-modality
 
 Paralleling past technological developments around single-cell omics, spatial 
