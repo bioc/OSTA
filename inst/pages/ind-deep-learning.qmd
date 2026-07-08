@@ -1,0 +1,341 @@
+# Deep Learning {#sec-ind-deep-learning}
+
+{{< include _start.qmd >}}
+
+## Preamble
+
+### Introduction
+
+Deep learning refers to a family of machine learning methods based on artificial
+neural networks with multiple (i.e., "deep") layers, capable of learning
+hierarchical representations directly from raw data (e.g., pixels, sequences,
+graphs) rather than from hand-crafted features. [@lecun2015deep] Several architectural families
+recur throughout single-cell and spatial omics analysis:
+
+- **Convolutional neural networks (CNNs)** apply learned filters that slide
+  across an image to detect local patterns (edges, textures, nuclei shapes);
+  they are the workhorse behind most cell/nucleus segmentation and image
+  classification tools (@sec-ind-image-analysis).
+
+- **Graph neural networks (GNNs)** operate on data structured as graphs (e.g.,
+  cells connected to their spatial neighbors) and propagate information along
+  edges, making them a natural fit for modeling spatial neighborhoods and
+  cell-cell interactions (@sec-ind-clustering, @sec-img-neighborhood-analysis).
+
+- **Transformers** rely on self-attention to weigh the relevance of every
+  element of an input (e.g., a gene, a token, an image patch) with respect to
+  every other element, without the locality constraints of CNNs. Transformers
+  underlie most large language models (LLMs) as well as the majority of
+  recent foundation models discussed below, including for non-text data such
+  as single-cell profiles or histology images.
+
+- **Large language models (LLMs)** are transformer-based models trained on
+  massive text corpora; while not designed for omics data, the same
+  self-attention machinery has been repurposed to model genes, cells, or
+  spatial spots as "tokens" (see `CellPLM` below).
+
+Taken together, these architectures increasingly converge in **foundation
+models** (FMs), which extend the same principles to (pre-)training at scale.
+The Stanford Institute for Human-Centered Artificial Intelligence describes an
+FM, in essence, as a model trained on broad data-typically via
+self-supervision, at scale-that can subsequently be adapted (e.g., fine-tuned)
+to a wide variety of downstream tasks. [@bommasani2021opportunities]
+
+"Self-supervision" here means that the model learns from unlabeled data by
+solving a proxy task derived from the data itself, without requiring manual
+annotation. Common strategies include *masking* (hiding part of the input-a
+gene, a patch, a token-and training the model to reconstruct it from context)
+and *contrastive learning* (training the model to recognize when two inputs,
+e.g., two augmented views of the same image patch, represent the same
+underlying entity, as used by DINOv2, discussed further below for KRONOS).
+This is what allows FMs to be pre-trained on very large collections of
+unlabeled cells or images before being adapted to specific, labeled
+downstream tasks. [@gui2024survey]
+
+FMs are typically trained on very large datasets and have high complexity
+(commonly billions of parameters), requiring multiple GPUs and long, costly
+training runs. Once trained, however, they can be reused "off-the-shelf" via
+fine-tuning or simply by extracting embeddings, without repeating the
+expensive pre-training step. Unlike task-specific models, FMs can in principle
+be applied to any data type: text, images, or tabular/matrix data such as
+count matrices, and in spatial biology, they offer a natural way to integrate
+histology (H&E) or immunofluorescence (IF) images with spatially resolved
+molecular data.
+
+
+## Background
+
+Historically, most computational methods for single-cell and spatial omics
+were purpose-built for one task and one data modality: a segmentation model
+trained on one imaging platform, a clustering method tuned to one assay, and
+so on. FMs shift this paradigm by decoupling *representation learning* (learning
+a general-purpose embedding of cells, images, or genes) from the *downstream
+task* (classification, clustering, spatial domain assignment, etc.). The same
+pre-trained backbone can then be reused across studies, platforms, and tasks,
+at the cost of requiring careful evaluation of whether learned representations
+actually transfer well to a given downstream setting (see
+[Outlook](#outlook) below).
+
+## Foundation models
+
+Foundation models (FMs) represent a modern paradigm where massive deep
+learning architectures (e.g., transformers) are pre-trained on millions of
+single-cell profiles, biological images, or spatial omics profiles, to learn
+generalizable representations. Nearly all of these models are developed and
+distributed in Python; R infrastructure to interface with pre-trained models
+(making use of model weights and embeddings for downstream analysis) is
+actively being developed, as discussed below. The remainder of this section
+first outlines how a pre-trained FM is typically adapted to a new task, then
+walks through representative models organized by data modality.
+
+| Model         | Input        | Architecture      | Output                  |
+|---------------|--------------|--------------------|--------------------------|
+| Prov-GigaPath [@xu2024gigapath] | H&E          | ViT                | tile/slide embedding    |
+| UNI [@chen2024towards]          | H&E          | ViT                | embedding                |
+| CONCH [@lu2024visual]           | image + text | vision-language    | embedding + zero-shot   |
+| KRONOS [@shaban2025foundation]  | IF           | ViT (DINOv2-based) | patch embedding          |
+| Nimbus [@rumberger2025automated]| IF           | marker-agnostic CNN| per-marker positive/negative |
+| Geneformer [@theodoris2023transfer] | scRNA    | Transformer        | cell embedding           |
+| scGPT [@cui2024scgpt]           | scRNA        | GPT                | cell embedding           |
+| scFoundation [@hao2024large]    | scRNA        | Transformer        | cell embedding           |
+| Novae [@blampey2025novae]       | spatial      | GNN                | domain/niche embedding  |
+| Nicheformer [@chen2025visual] | scRNA + spatial | Transformer | niche embedding |
+
+: Overview of representative foundation models discussed in this chapter, organized by input data type. {#tbl-fm-overview}
+
+### Adapting a pre-trained FM to a new task
+
+Having a pre-trained FM available does not by itself solve a downstream
+analysis task; the model still needs to be *adapted*, and there are three
+common strategies, in increasing order of computational cost:
+
+- **Zero-shot inference** uses the pre-trained model as-is, with no further
+  training, either by extracting embeddings directly for tasks like
+  clustering or nearest-neighbor search, or, for vision-language models such
+  as CONCH, by prompting the model with natural-language class descriptions.
+
+- **Linear probing** keeps the pre-trained weights frozen and trains only a
+  small linear (or otherwise simple) classifier/regressor on top of the
+  extracted embeddings for a specific labeled task-cheap to run, and often
+  used as the standard way to benchmark how informative a given FM's
+  embeddings are.
+
+- **Fine-tuning** updates some or all of the pre-trained weights on
+  task-specific labeled data. This typically yields the best task-specific
+  performance but requires more labeled data and compute, and risks
+  overfitting on small cohorts.
+
+Which strategy is appropriate depends on how much labeled data is available
+for the task at hand and how similar that task is to the data the FM was
+pre-trained on; benchmarking more than one strategy is generally advisable
+before committing to FM-derived embeddings for a downstream analysis.
+
+### FMs for histology (H&E) images
+
+In spatial transcriptomics, FMs pre-trained on hematoxylin and eosin (H&E)
+whole-slide images provide embeddings that summarize morphology at the
+patch, cell, or slide level, which can then be linked to gene expression,
+clinical outcomes, or spatial domains. Prominent examples include:
+
+- **Prov-GigaPath** [@xu2024gigapath], a vision transformer pre-trained on
+  over a billion tiles from more than 170,000 whole-slide images, combining
+  tile-level self-supervised pre-training with slide-level aggregation to
+  capture both local and long-range tissue context.
+
+- **UNI** [@chen2024towards], a general-purpose pathology encoder trained via
+  self-supervision on over 100 million histopathology image patches, designed
+  to transfer well across a broad range of diagnostic tasks.
+
+- **CONCH** [@lu2024visual], a vision-*language* foundation model (not
+  graph-based) trained on more than a million histology image-caption pairs,
+  allowing it to be queried with text as well as images (e.g., zero-shot
+  classification from natural-language prompts).
+
+Since these models are typically compared on how well their embeddings
+predict gene expression from morphology, it is worth also mentioning
+**HEST-1k** [@jaume2024hest], a dataset and companion benchmark (the
+HEST-Benchmark) of over a thousand paired H&E whole-slide images and spatial
+transcriptomics profiles spanning multiple organs, species, and cancer types.
+Rather than an FM itself, HEST-1k provides a standardized way to evaluate and
+compare H&E foundation models-including Prov-GigaPath, UNI, and CONCH
+above-on the task of predicting gene expression directly from histology.
+
+### FMs for multiplexed / immunofluorescence (IF) images
+
+For highly multiplexed imaging (e.g., IMC, CODEX, CosMx protein panels), FMs
+face an additional challenge: the number and identity of channels/markers
+varies across experiments and platforms. Two representative approaches are:
+
+- **KRONOS** [@shaban2025foundation], a foundation model purpose-built for
+  spatial proteomics. It was trained on more than 47 million single-marker
+  image patches spanning 175 protein markers and 16 tissue types, using a
+  Vision Transformer (based on DINOv2) adapted to jointly encode multiple,
+  heterogeneous markers. KRONOS extracts 384-dimensional embeddings per image
+  patch, usable for cell phenotyping, artifact detection, tissue-region
+  classification, or outcome prediction.
+
+- **Nimbus** [@rumberger2025automated], a model that operates marker-by-marker
+  (rather than jointly across all channels) to classify, for each cell,
+  whether a given marker is positive or negative directly from raw pixel
+  values rather than integrated intensities. Because it treats each marker
+  independently, Nimbus is portable across multiplexed-imaging platforms with
+  different channel counts and panels, without retraining.
+
+### FMs for single-cell omics
+
+Several FMs treat single-cell (and, by extension, spot- or bin-level spatial)
+gene expression profiles analogously to text, with genes or cells playing the
+role of "tokens" and "sentences":
+
+- **Geneformer** [@theodoris2023transfer], a transformer pre-trained on
+  ~30 million single-cell transcriptomes, representing each cell as a ranked
+  sequence of gene tokens.
+
+- **scGPT** [@cui2024scgpt], a generative pre-trained transformer for
+  single-cell biology trained across tens of millions of cells; a
+  spatially-aware extension (`scGPT-spatial`) has been proposed but is not
+  yet broadly integrated into spatial workflows.
+
+- **scFoundation** [@hao2024large], a large-scale model covering
+  close to the full human transcriptome (~20,000 genes) as input, rather than
+  a reduced gene set.
+
+Not an FM in the strict sense, but conceptually related and worth mentioning:
+`r BiocStyle::Githubpkg("OmicsML/CellPLM")` [@Wen2023-CellPLM] is a pre-trained
+"cell language model" with cells as tokens and tissues as sentences-an idea
+directly inspired by large language models. It supports several downstream
+tasks including denoising and annotation of scRNA-seq data, imputation of ST
+data, and perturbation-response prediction.
+
+### FMs for spatial transcriptomics
+
+Although the models above were largely developed for non-spatial single-cell
+data, spatial transcriptomics profiles can often be passed through them for
+comparison with spatial-specific models, even without native support for
+spatial coordinates. Models developed specifically with spatial context in
+mind include:
+
+- **Novae** [@blampey2025novae], a graph-based deep learning model for
+  spatial domain and niche assignment across samples and technologies,
+  discussed further in @sec-ind-clustering.
+
+- **Nicheformer** [@chen2025visual], a transformer-based FM
+  jointly pre-trained on over 110 million dissociated single-cell and
+  spatially resolved cells across 73 tissues. By encoding modality, organism,
+  and assay as explicit tokens, Nicheformer learns a shared representation of
+  single-cell and spatial data, allowing spatial context (e.g., niche or
+  neighborhood composition) learned from spatial assays to be transferred
+  onto dissociated scRNA-seq data that was never spatially profiled.
+
+For spatial omics more broadly, FM-derived embeddings increasingly overlap
+with spatial domain and neighborhood analysis, since they provide
+representations that can be clustered, compared across samples, or used as
+input to downstream analyses; see @sec-ind-clustering and
+@sec-img-neighborhood-analysis for representative domain- and niche-level
+workflows.
+
+### FMs in the Bioconductor ecosystem
+
+Because virtually all FMs above are implemented and distributed in Python,
+using them from R currently relies on Python interoperability layers such as
+`reticulate` and `basilisk` (@sec-bkg-python-interoperability). Community
+efforts are underway to bring foundation-model functionality natively into
+the Bioconductor ecosystem, providing R users with wrappers to run
+pre-trained models and retrieve their embeddings for downstream analysis
+without having to write custom Python interoperability code for each model.
+The [BiocFM](https://github.com/BiocFM) working group collects these ongoing
+efforts and is a useful entry point for tracking newly available R interfaces
+to FMs as this space matures.
+
+### Practical considerations: access, licensing, and compute
+
+Beyond conceptual differences, FMs vary considerably in how easy they are to
+actually obtain and run, which is often the first practical hurdle for a new
+user:
+
+- **Access and licensing.** Many histology FMs are *gated*: for example,
+  Prov-GigaPath and UNI are distributed through Hugging Face and require
+  requesting access and agreeing to a data use agreement (typically
+  restricting use to non-commercial research) before the weights can be
+  downloaded, whereas CONCH's weights are comparatively more openly
+  accessible. Always check a model's license and any usage restrictions
+  before relying on it, particularly for clinical or commercial applications.
+
+- **Compute requirements.** Pre-trained checkpoints for these models are
+  often several hundred megabytes to a few gigabytes in size, and while
+  extracting embeddings from a pre-trained model ("inference") is far cheaper
+  than pre-training, it typically still benefits from, or requires, a GPU for
+  reasonable runtimes on large whole-slide images or large cell atlases; CPU-
+  only inference is usually possible but considerably slower. Fine-tuning, in
+  particular, generally requires GPU resources.
+
+- **Reproducibility.** Because most FMs evolve quickly (new checkpoints,
+  architecture variants), it is good practice to record the exact model
+  version/checkpoint used, in addition to the usual software versions, when
+  reporting FM-based results.
+  
+
+### When should I use a foundation model?
+
+Given the added complexity of FMs relative to simpler, task-specific methods,
+it is worth pausing before defaulting to one. As a rule of thumb:
+
+- **Use one when annotated data are scarce.** FMs are most valuable when you
+  have little or no labeled data for your specific task, since their
+  pre-trained representations can substitute for large labeled training sets.
+
+- **Use one when transfer learning is desirable.** If you need to compare or
+  combine data across studies, platforms, or technologies, FM embeddings
+  provide a shared representation space that a bespoke, dataset-specific
+  model would not.
+
+- **Benchmark against simpler baselines.** As discussed in
+  [Outlook](#outlook), FMs do not always outperform linear models or PCA on a
+  given task-always compare against a simple baseline before committing to
+  an FM-based pipeline.
+
+- **Verify that your tissue, species, and platform are represented in
+  pre-training.** FM performance degrades outside the domain(s) seen during
+  pre-training; check the original publication's training data before
+  assuming embeddings will transfer to your data.
+
+- **Record the checkpoint and version used.** FMs are updated frequently;
+  note the exact model checkpoint/version alongside your usual software
+  versions to keep results reproducible.
+
+### Outlook {#outlook}
+
+FM-derived embeddings are not a universal replacement for simpler methods,
+and their added complexity should be weighed against the task at hand. Two
+cautionary results are worth highlighting: for the prediction of molecular
+changes upon perturbation (e.g., disease state, treatment response),
+deep-learning-based approaches have been shown not to (yet) outperform simple
+linear baselines [@AhlmannEltze2025]; similarly, @kedzierska2025zero report
+out-performance by simpler methods in the context of cell type annotation. As
+with any pre-trained model, it is important to check whether the domains
+(tissue types, platforms, species) seen during pre-training are representative
+of the data at hand before relying on FM embeddings for a new task.
+
+::: {.callout-tip icon="false" title="Further reading"}
+
+- @lecun2015deep provides a foundational introduction to deep learning,
+  including neural network architectures and the principles underlying
+  modern machine learning methods.
+
+- @Crowell2026BioHackathon discusses emerging directions in spatial
+  and imaging data analysis within Bioconductor, including challenges
+  and opportunities for integrating modern machine learning and
+  foundation-model-based approaches.
+
+- @Szalata2024 describe, review, and discuss future directions of
+transformers in single-cell omics: a popular architecture for FMs.
+
+- @AhlmannEltze2025 demonstrates that linear models yield better
+performance than more sophisticated deep learning-based approaches.
+
+- @AhlmannEltze2026 review tasks and challenges around representation learning
+of scRNA-seq data, including transformer-based FMs, autoencoders, and more.
+
+:::
+
+

@@ -81,6 +81,8 @@ book:
           file: pages/ind-spatial-statistics.qmd
         - text: "📖 Image analysis"
           file: pages/ind-image-analysis.qmd
+        - text: "📖 Deep learning"
+          file: pages/ind-deep-learning.qmd
     - part: "Multiple-sample analyses"
       chapters:
         - text: "⚙️ Differential spatial patterns"
@@ -104,7 +106,7 @@ book:
     - pages/apx-acknowledgments.qmd
     - pages/apx-session-info.qmd
   favicon: assets/favicon.png
-  sidebar: 
+  sidebar:
     title: "OSTA"
     style: "docked"
     background: "light"
