@@ -1,4 +1,7 @@
 # Clustering & annotation {#sec-ind-clustering}
+```{r}
+knitr::opts_chunk$set(eval=FALSE)
+```
 
 {{< include _start.qmd >}}
 
@@ -346,6 +349,8 @@ More recently, foundation models (FMs) pretrained on very many single cells have
 Such models (e.g., `scFoundation` [@Hao2024-scFoundation], `scGPT` [@Cui2024-scGPT], 
 and `Geneformer` [@Theodoris2023-Geneformer]) can be used zero-shot or fine-tuned 
 to classify cell types across diverse tissues and platforms with high accuracy.
+[See also @sec-ind-deep-learning for more details on deep learning-based 
+approaches and foundation models beyond cell type annotation.]{.aside}
 
 ### Reference datasets
 
