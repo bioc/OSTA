@@ -37,17 +37,18 @@ recur throughout single-cell and spatial omics analysis:
 Taken together, these architectures increasingly converge in **foundation
 models** (FMs), which extend the same principles to (pre-)training at scale.
 The Stanford Institute for Human-Centered Artificial Intelligence describes an
-FM, in essence, as a model trained on broad data-typically via
-self-supervision, at scale-that can subsequently be adapted (e.g., fine-tuned)
-to a wide variety of downstream tasks. [@bommasani2021opportunities]
+FM, in essence, as a model trained on broad data (typically via
+self-supervision at scale) that can subsequently be adapted (e.g.,
+fine-tuned) to a wide variety of downstream tasks. [@bommasani2021opportunities]
 
 "Self-supervision" here means that the model learns from unlabeled data by
 solving a proxy task derived from the data itself, without requiring manual
-annotation. Common strategies include *masking* (hiding part of the input-a
-gene, a patch, a token-and training the model to reconstruct it from context)
-and *contrastive learning* (training the model to recognize when two inputs,
-e.g., two augmented views of the same image patch, represent the same
-underlying entity, as used by DINOv2, discussed further below for KRONOS).
+annotation. Common strategies include *masking*, where part of the input (such
+as a gene, a patch, or a token) is hidden and the model is trained to
+reconstruct it from context, and *contrastive learning* (training the model to
+recognize when two inputs, e.g., two augmented views of the same image patch,
+represent the same underlying entity, as used by DINOv2, discussed further
+below for KRONOS).
 This is what allows FMs to be pre-trained on very large collections of
 unlabeled cells or images before being adapted to specific, labeled
 downstream tasks. [@gui2024survey]
@@ -88,18 +89,18 @@ actively being developed, as discussed below. The remainder of this section
 first outlines how a pre-trained FM is typically adapted to a new task, then
 walks through representative models organized by data modality.
 
-| Model         | Input        | Architecture      | Output                  |
-|---------------|--------------|--------------------|--------------------------|
-| Prov-GigaPath [@xu2024gigapath] | H&E          | ViT                | tile/slide embedding    |
-| UNI [@chen2024towards]          | H&E          | ViT                | embedding                |
-| CONCH [@lu2024visual]           | image + text | vision-language    | embedding + zero-shot   |
-| KRONOS [@shaban2025foundation]  | IF           | ViT (DINOv2-based) | patch embedding          |
-| Nimbus [@rumberger2025automated]| IF           | marker-agnostic CNN| per-marker positive/negative |
-| Geneformer [@theodoris2023transfer] | scRNA    | Transformer        | cell embedding           |
-| scGPT [@cui2024scgpt]           | scRNA        | GPT                | cell embedding           |
-| scFoundation [@hao2024large]    | scRNA        | Transformer        | cell embedding           |
-| Novae [@blampey2025novae]       | spatial      | GNN                | domain/niche embedding  |
-| Nicheformer [@tejada2025nicheformer] | scRNA + spatial | Transformer | niche embedding |
+| Model                                | Input           | Architecture        | Output                       |
+|--------------------------------------|-----------------|---------------------|------------------------------|
+| Prov-GigaPath [@xu2024gigapath]      | H&E             | ViT                 | tile/slide embedding         |
+| UNI [@chen2024towards]               | H&E             | ViT                 | embedding                    |
+| CONCH [@lu2024visual]                | image + text    | vision-language     | embedding + zero-shot        |
+| KRONOS [@shaban2025foundation]       | IF              | ViT (DINOv2-based)  | patch embedding              |
+| Nimbus [@rumberger2025automated]     | IF              | marker-agnostic CNN | per-marker positive/negative |
+| Geneformer [@theodoris2023transfer]  | scRNA           | Transformer         | cell embedding               |
+| scGPT [@cui2024scgpt]                | scRNA           | GPT                 | cell embedding               |
+| scFoundation [@hao2024large]         | scRNA           | Transformer         | cell embedding               |
+| Novae [@blampey2025novae]            | spatial         | GNN                 | domain/niche embedding       |
+| Nicheformer [@tejada2025nicheformer] | scRNA + spatial | Transformer         | niche embedding              |
 
 : Overview of representative foundation models discussed in this chapter, organized by input data type. {#tbl-fm-overview}
 
@@ -116,9 +117,8 @@ common strategies, in increasing order of computational cost:
 
 - **Linear probing** keeps the pre-trained weights frozen and trains only a
   small linear (or otherwise simple) classifier/regressor on top of the
-  extracted embeddings for a specific labeled task-cheap to run, and often
-  used as the standard way to benchmark how informative a given FM's
-  embeddings are.
+  extracted embeddings for a specific labeled task, a comparatively cheap
+  strategy often used to benchmark how informative a given FM's embeddings are.
 
 - **Fine-tuning** updates some or all of the pre-trained weights on
   task-specific labeled data. This typically yields the best task-specific
@@ -157,8 +157,8 @@ predict gene expression from morphology, it is worth also mentioning
 HEST-Benchmark) of over a thousand paired H&E whole-slide images and spatial
 transcriptomics profiles spanning multiple organs, species, and cancer types.
 Rather than an FM itself, HEST-1k provides a standardized way to evaluate and
-compare H&E foundation models-including Prov-GigaPath, UNI, and CONCH
-above-on the task of predicting gene expression directly from histology.
+compare H&E foundation models (including Prov-GigaPath, UNI, and CONCH) on the
+task of predicting gene expression directly from histology.
 
 ### FMs for multiplexed / immunofluorescence (IF) images
 
@@ -273,7 +273,7 @@ user:
   architecture variants), it is good practice to record the exact model
   version/checkpoint used, in addition to the usual software versions, when
   reporting FM-based results.
-  
+
 
 ### When should I use a foundation model?
 
@@ -330,13 +330,13 @@ of the data at hand before relying on FM embeddings for a new task.
   foundation-model-based approaches.
 
 - @Szalata2024 describe, review, and discuss future directions of
-transformers in single-cell omics: a popular architecture for FMs.
+  transformers in single-cell omics: a popular architecture for FMs.
 
 - @AhlmannEltze2025 demonstrates that linear models yield better
-performance than more sophisticated deep learning-based approaches.
+  performance than more sophisticated deep learning-based approaches.
 
 - @AhlmannEltze2026 review tasks and challenges around representation learning
-of scRNA-seq data, including transformer-based FMs, autoencoders, and more.
+  of scRNA-seq data, including transformer-based FMs, autoencoders, and more.
 
 :::
 
