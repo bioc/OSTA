@@ -99,7 +99,7 @@ walks through representative models organized by data modality.
 | scGPT [@cui2024scgpt]           | scRNA        | GPT                | cell embedding           |
 | scFoundation [@hao2024large]    | scRNA        | Transformer        | cell embedding           |
 | Novae [@blampey2025novae]       | spatial      | GNN                | domain/niche embedding  |
-| Nicheformer [@chen2025visual] | scRNA + spatial | Transformer | niche embedding |
+| Nicheformer [@tejada2025nicheformer] | scRNA + spatial | Transformer | niche embedding |
 
 : Overview of representative foundation models discussed in this chapter, organized by input data type. {#tbl-fm-overview}
 
@@ -219,7 +219,7 @@ mind include:
   spatial domain and niche assignment across samples and technologies,
   discussed further in @sec-ind-clustering.
 
-- **Nicheformer** [@chen2025visual], a transformer-based FM
+- **Nicheformer** [@tejada2025nicheformer], a transformer-based FM
   jointly pre-trained on over 110 million dissociated single-cell and
   spatially resolved cells across 73 tissues. By encoding modality, organism,
   and assay as explicit tokens, Nicheformer learns a shared representation of
