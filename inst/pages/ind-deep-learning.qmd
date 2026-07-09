@@ -1,4 +1,4 @@
-# Deep Learning {#sec-ind-deep-learning}
+# Deep learning {#sec-ind-deep-learning}
 
 {{< include _start.qmd >}}
 
@@ -316,6 +316,8 @@ with any pre-trained model, it is important to check whether the domains
 (tissue types, platforms, species) seen during pre-training are representative
 of the data at hand before relying on FM embeddings for a new task.
 
+## Appendix
+
 ::: {.callout-tip icon="false" title="Further reading"}
 
 - @lecun2015deep provides a foundational introduction to deep learning,
@@ -338,4 +340,6 @@ of scRNA-seq data, including transformer-based FMs, autoencoders, and more.
 
 :::
 
+### References {.unnumbered}
 
+{{< include _stop.qmd >}}
