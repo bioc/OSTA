@@ -6,7 +6,7 @@
 
 ### Introduction
 
-As was previously discussed, most commonly employed imaging-based ST assays can resolve 100s to 1000s features. Meanwhile, non-spatially resolved single-cell assays are able to capture transcripts across 10,000 gene features. To allow estimating the expression of genes that may not be available in a ST assay, we would like to integrate spatially resolved data with scRNA-seq data using common features, in order to predict missing features using nearest neighbors (i.e., transcriptionally similar) cells.
+As was previously discussed, most commonly employed imaging-based ST assays can resolve 100s to 1000s of features. Meanwhile, non-spatially resolved single-cell assays are able to capture transcripts across 10,000 gene features. To allow estimating the expression of genes that may not be available in an ST assay, we would like to integrate spatially resolved data with scRNA-seq data using common features, in order to predict missing features using nearest-neighbor cells (i.e., transcriptionally similar cells).
 
 ### Dependencies
 
@@ -85,7 +85,7 @@ Specifically, methods applicable to each type of integration strategy depend on 
 
 Firstly, experiments may involve multiple (biological or technical) replicates, requiring **horizontal** integration across cells that share a common feature space. 
 Secondly, multi-modal assays can simultaneously extract different types of features from a given cell.
-Integration must then be **vertical**, i.e., across features measured from the same cells. Thirdly, technological limitations may require measuring different modalities from separate groups of cells, in which case **diagonal** integration across both different cells and features is necessary
+Integration must then be **vertical**, i.e., across features measured from the same cells. Thirdly, technological limitations may require measuring different modalities from separate groups of cells, in which case **diagonal** integration across both different cells and features is necessary.
 
 Single-cell transcriptomics data analyses are most commonly faced with horizontal integration. 
 Methods for this task have been benchmarked extensively [@Tran2020; @ChazarraGil2021; @Luecken2022].
@@ -144,7 +144,7 @@ pcs <- RunHarmony(
 reducedDim(obj, "PCA") <- pcs
 
 # dimensionality reduction before/after
-# integration(for visualization only)
+# integration (for visualization only)
 obj <- runUmap.se(obj, num.threads=th,
     reddim.type=".PCA", output.name=".UMAP") 
 obj <- runUmap.se(obj, num.threads=th,
@@ -180,7 +180,7 @@ and many are implemented in `r BiocStyle::Biocpkg("CellMixS")` [@Lutge2021-CellM
 
 Here, we will perform principal component regression (PCR) to quantify 
 the variance explained by cluster/batch (before and after correction); 
-after corresion, we want most variation to be attributable to clusters.
+after correction, we want most variation to be attributable to clusters.
 
 ```{r pcr}
 # helper to perform PCR 

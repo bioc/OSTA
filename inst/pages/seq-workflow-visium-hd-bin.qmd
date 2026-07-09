@@ -344,7 +344,7 @@ wrap_plots(ps, nrow=1) & theme(
 
 ### Load single-cell reference
 
-We will now perform deconvolution on the 16 µm binned Visium HD data. First, we retrieve matching (Chromium) scRNA-seq data, which includes low- (`Level1`) and high-resolution (`Level2`) annotations of cells into 9 respectively 31 clusters. In order to ensure similar transcriptional profile across technologies, we filter the reference population to patient 2 only.
+We will now perform deconvolution on the 16 µm binned Visium HD data. First, we retrieve matching (Chromium) scRNA-seq data, which includes low- (`Level1`) and high-resolution (`Level2`) annotations of cells into 9 and 31 clusters, respectively. In order to ensure similar transcriptional profiles across technologies, we filter the reference population to patient 2 only.
 
 ```{r load-sce, results="hold", message=FALSE, warning=FALSE}
 # retrieve dataset from OSF repository
@@ -575,7 +575,7 @@ fq <- prop.table(table(.vhd16$Banksy, .vhd16$.DeconLabel1), 1)
 pheatmap(fq, cellwidth=10, cellheight=10, treeheight_row=5, treeheight_col=5)
 ```
 
-From the above heatmap, cluster 5 and 7 are mostly immune cells; cluster 9 maps to endothelial; cluster 1 and 13 correspond to intestinal epithelial and smooth muscle cells, respectively; fibroblasts map to cluster 10; tumor spans clusters 3, 11 and 12.
+From the above heatmap, clusters 5 and 7 are mostly immune cells; cluster 9 maps to endothelial; clusters 1 and 13 correspond to intestinal epithelial and smooth muscle cells, respectively; fibroblasts map to cluster 10; tumor spans clusters 3, 11 and 12.
 
 ## Neighborhood analysis
 

@@ -38,7 +38,7 @@ These approaches supplement other downstream analyses, such as differential expr
 
 ### SpatialFeatures
 
-`r BiocStyle::Githubpkg("SydneyBioX/SpatialFeatures")` is a R package that uses `MoleculeExperiment` to store transcript location and boundaries (cells, nuclei, and/or regions of interest), and perform sub-cellular and extra-cellular analyses. A `SpatialFeatures` run involves 3 main steps:
+`r BiocStyle::Githubpkg("SydneyBioX/SpatialFeatures")` is an R package that uses `MoleculeExperiment` to store transcript location and boundaries (cells, nuclei, and/or regions of interest), and perform sub-cellular and extra-cellular analyses. A `SpatialFeatures` run involves 3 main steps:
 
 1. Generate new sub-cellular (sub-concentric, sub-sector) and extra-cellular (super-concentric, super-sector) boundaries (`loadBoundaries()`).
 
@@ -102,7 +102,7 @@ Some statistical tests for gene(s) localization/co-localization that can be perf
 
 - **Sub-cellular clustering** of transcript locations into sub-cellular patches with high transcript density using Leiden graph clustering. 
 
-- **Sub-cellular patch analysis**, where transcripts of each gene in each patch are summed to generate a patch x gene counts data. This is used to calculate Pearson's correlation between genes across all patches, to identify gene pairs that often co-localize. The statistical significance of these correlation values can be assessed using a t-test. 
+- **Sub-cellular patch analysis**, where transcripts of each gene in each patch are summed to generate a patch-by-gene count matrix. This is used to calculate Pearson's correlation between genes across all patches, to identify gene pairs that often co-localize. The statistical significance of these correlation values can be assessed using a t-test.
 
 - **Sub-cellular local neighborhoods** are detected within a patch by identifying 9 nearest neighbors of each transcript in the patch. Further analysis involves summing transcript counts in the local neighborhoods and calculating Pearson's correlation between genes. Through permutation analysis, a proximity score is calculated for each gene pair in the patch.
 
@@ -112,7 +112,7 @@ Depending on availability of cell type data, additional questions can be asked. 
 
 ### 2D *versus* 3D
 
-A majority of the molecule-resolved SRT data are 2D projections of 3D structures, such as cells, organelles, or even processes like RNA transport. A few imaging-based SRT technologies are capable of measuring tissue depth as z-axis, generating 3D coordinates with a sparse z-axis. However, working with 2D *versus* 3D data is not so different, since spatial relations are often captured as neighborhoods defined by Euclidean or other distance measures between locations, irrespective of coordinate dimension. Therefore, many tools are able to use n-dimension coordinates for measuring spatial relationships. For example, `ClusterMap` can use 3D coordinates by using `z_radius` for z-axis data, if its available, whereas for 2D coordinates it sets `z_radius = 0` [@He2021-ClusterMap].
+A majority of the molecule-resolved SRT data are 2D projections of 3D structures, such as cells, organelles, or even processes like RNA transport. A few imaging-based SRT technologies are capable of measuring tissue depth as z-axis, generating 3D coordinates with a sparse z-axis. However, working with 2D *versus* 3D data is not so different, since spatial relations are often captured as neighborhoods defined by Euclidean or other distance measures between locations, irrespective of coordinate dimension. Therefore, many tools are able to use n-dimensional coordinates for measuring spatial relationships. For example, `ClusterMap` can use 3D coordinates by using `z_radius` for z-axis data, if it's available, whereas for 2D coordinates it sets `z_radius = 0` [@He2021-ClusterMap].
 
 ## Appendix
 

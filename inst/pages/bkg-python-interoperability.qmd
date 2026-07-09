@@ -175,7 +175,7 @@ fnm <- file.path(td, "outs", "spatial", fnm)
 sfs <- read_json(fnm)
 ```
 
-We again use the `as_AnnData` function from `anndataR` from the previous example, and convert the `SingleCellExperiment`-relevant components of the `SpatialExperiment` object to an `AnnData` object.
+We again use the `as_AnnData` function from `anndataR` in the previous example, and convert the `SingleCellExperiment`-relevant components of the `SpatialExperiment` object to an `AnnData` object.
 
 ```{r spe2ad, message=FALSE}
 mtx <- as(assay(spe), "dgCMatrix")

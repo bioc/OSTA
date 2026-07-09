@@ -9,7 +9,7 @@ This chapter provides details on how to import data into R as Bioconductor-based
 
 ## Flat file structure
 
-At present, the file structure and formats of data from spatial transcriptomics platforms varies between commercial providers. Nevertheless, all data are similar in their essence, e.g.: sequencing-based data include spatial locations of array spots (or other spatial locations) and a count matrix; imaging-based data include transcript locations (from spot-calling), polygon boundaries (from segmentation), and a count matrix (from allocating transcripts to cells), etc.
+At present, the file structure and formats of data from spatial transcriptomics platforms vary between commercial providers. Nevertheless, all data are similar in their essence, e.g.: sequencing-based data include spatial locations of array spots (or other spatial locations) and a count matrix; imaging-based data include transcript locations (from spot-calling), polygon boundaries (from segmentation), and a count matrix (from allocating transcripts to cells), etc.
 
 Here, we provide a summary for several commercially available data types.
 

@@ -127,7 +127,7 @@ keep <- apply(db, 1, \(.) {
 
 ### CCC inference
 
-To reduce runtime, we will restrict analysis to a 2mm$2$ tissue section:
+To reduce runtime, we will restrict analysis to a 2 mm $\times$ 2 mm tissue section:
 
 ```{r sub}
 # subset data to features being considered
@@ -238,7 +238,7 @@ pal <- list(
     s=c("grey90", "gold", "black"), 
     r=c("grey90", "turquoise", "black"))
 
-# get variables names of the form: x, s-x-y, r-x-y, y
+# get variable names of the form: x, s-x-y, r-x-y, y
 .f <- \(i, j) c(i, paste(c("s","r"), i,j, sep="-"), j)
 xs <- .f("CXCL12", "CXCR4")
 
@@ -328,7 +328,7 @@ assay(mu$r, "s") <- assay(mu$s)
 
 ```{r viz-hm, fig.width=5, fig.height=4}
 #| layout-ncol: 2
-# visualize scales values across clusters
+# visualize scaled values across clusters
 for (sr in assayNames(mu)) {
     plotHeatmap(mu, exprs_values=sr,
         features=grep("-", rownames(sce)),

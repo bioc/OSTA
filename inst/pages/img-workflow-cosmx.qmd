@@ -290,7 +290,7 @@ jc <- joincount.multi(
 head(jc[order(abs(jc[, "z-value"]), decreasing=TRUE), ])
 ```
 
-We can see that there is a strong tendency for cells of the same type to be neighbors (high positive z-values). There are also some interesting negative interactions between different cell types: e.g., pyramidal CA1 tend to be away from oligodendrocytes and astrocytes. This highlights the compartimentalized structure of the brain tissue.
+We can see that there is a strong tendency for cells of the same type to be neighbors (high positive z-values). There are also some interesting negative interactions between different cell types: e.g., pyramidal CA1 tend to be away from oligodendrocytes and astrocytes. This highlights the compartmentalized structure of the brain tissue.
 
 ### Point-pattern analysis
 
@@ -299,7 +299,7 @@ A similar result can be obtained using point-pattern analysis, such as Ripley's 
 Here, we use Besag's L function to quantify the interaction between pyramidal CA1 neurons, and the interaction between them and oligodendrocytes (cross-L function).
 
 ::: {.aside}
-Other methods are available, such as Ripley's K function, and the pair correlation function [@Emons2025-pasta]. Note that here we are making the quite strong assuption of homogeneity of the point pattern, which is irrealistic in tissue biology. In particular, CSR is a naïve null model that does not take into account tissue structure and cell density variations across the tissue. Hence, these plots should be considered as exploratory analyses rather than formal hypothesis tests.
+Other methods are available, such as Ripley's K function, and the pair correlation function [@Emons2025-pasta]. Note that here we are making the quite strong assumption of homogeneity of the point pattern, which is unrealistic in tissue biology. In particular, CSR is a naïve null model that does not take into account tissue structure and cell density variations across the tissue. Hence, these plots should be considered as exploratory analyses rather than formal hypothesis tests.
 :::
 
 

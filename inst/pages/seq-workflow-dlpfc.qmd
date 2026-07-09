@@ -243,7 +243,7 @@ plotCoords(spe, annotate="ground_truth", pal="libd_layer_colors")
 We can also plot the cluster labels in the top 2 UMAP dimensions.
 
 ```{r plot-clusters-umap, fig.width=4.5, fig.height=4}
-# plot clusters labels in UMAP dimensions
+# plot cluster labels in UMAP dimensions
 plotDimRed(spe, plot_type="UMAP", annotate="label", pal="libd_layer_colors")
 ```
 
@@ -290,7 +290,7 @@ The `spatialLIBD` package has a function, `spatialLIBD::run_app(spe)`, which wil
 * for one tissue section at a time, either with interactive or static versions 
 * for multiple tissue sections at a time, either interactively or statically
 
-Both options work with continuous and discrete variables such as the gene expression and clusters, respectively. The interactive version for discrete variables such as clusters is useful if you want to manually annotate Visium spots, as in @Maynard2021-DLPFC. `spatialLIBD` allows users to download the annotated spots and resume your spot annotation work later.
+Both options work with continuous and discrete variables such as the gene expression and clusters, respectively. The interactive version for discrete variables such as clusters is useful if you want to manually annotate Visium spots, as in @Maynard2021-DLPFC. `spatialLIBD` allows users to download the annotated spots and resume their spot annotation work later.
 
 ```{r spatiallibd-full-clusters, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with the full spatialLIBD dataset. The website was created with `spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))` version 1.4.0 and then using the lasso selection, we selected a set of spots in the UMAP interactive plot colored by the estimated number of cells per spot (`cell_count`) on the bottom left, which automatically updated the other three plots."}
 knitr::include_graphics("https://raw.githubusercontent.com/lmweber/OSTA-resources/main/images/spatialLIBD_interactive_cluster.png")
@@ -522,7 +522,7 @@ Now that you have created a `spatialLIBD`-powered website, you might be interest
 format(object.size(spe), units="MB")
 ```
 
-If your data is small enough, you might want to share your website by hosting on [shinyapps.io](https://www.shinyapps.io/) by Posit (the company that develops RStudio), which you can try for free. Once you have created your account, you need to create an `app.R` file like the one we have [on the `spatialLIBD_demo` directory](https://github.com/lmweber/OSTA-resources/tree/main/spatialLIBD_demo).
+If your data is small enough, you might want to share your website by hosting on [shinyapps.io](https://www.shinyapps.io/) by Posit (the company that develops RStudio), which you can try for free. Once you have created your account, you need to create an `app.R` file like the one we have [in the `spatialLIBD_demo` directory](https://github.com/lmweber/OSTA-resources/tree/main/spatialLIBD_demo).
 
 ```{r spatialLIBD_app_file, echo=FALSE}
 cat(paste0(readLines("https://raw.githubusercontent.com/lmweber/OSTA-resources/main/spatialLIBD_demo/app.R"), "\n"))
