@@ -1,4 +1,5 @@
 # Clustering & annotation {#sec-ind-clustering}
+
 ```{r}
 knitr::opts_chunk$set(eval=FALSE)
 ```
@@ -72,7 +73,7 @@ table(spe$Leiden)
 ### Spatially-aware
 
 Several methods to identify spatial domains in ST data have recently been developed, which each have various methodological and computational tradeoffs. 
-A few example include `r BiocStyle::Biocpkg("BayesSpace")` [@Zhao2021-BayesSpace], `r BiocStyle::Biocpkg("Banksy")` [@Singhal2024-BANKSY] and `r BiocStyle::CRANpkg("PRECAST")` [@Liu2023-PRECAST] in R, as well as `r BiocStyle::Githubpkg("CellCharter")` [@Varrone2024-CellCharter] and `r BiocStyle::Githubpkg("SpaceFlow")` [@Ren2022-SpaceFlow] in Python.
+A few examples include `r BiocStyle::Biocpkg("BayesSpace")` [@Zhao2021-BayesSpace], `r BiocStyle::Biocpkg("Banksy")` [@Singhal2024-BANKSY] and `r BiocStyle::CRANpkg("PRECAST")` [@Liu2023-PRECAST] in R, as well as `r BiocStyle::Githubpkg("CellCharter")` [@Varrone2024-CellCharter] and `r BiocStyle::Githubpkg("SpaceFlow")` [@Ren2022-SpaceFlow] in Python.
 
 Here, we demonstrate tools representative of different methodologies, namely, (probabilistic) `BayesSpace` for seq-based Visium, as well as (neighborhood-based) `Banksy` and (encoder-based) `CellCharter` for img-based Xenium data.
 
@@ -256,7 +257,7 @@ pcr <- lapply(ids, \(id) {
 }) |> do.call(what=rbind)
 ```
 
-Here, `Leiden` (transcription-only) and `Banksy` (spatially-aware) clusterings perform similar in terms of capturing (spatially unaware) PCs; as to be expected, `Leiden` clusters do slightly better.
+Here, `Leiden` (transcription-only) and `Banksy` (spatially-aware) clusterings perform similarly in terms of capturing (spatially unaware) PCs; as expected, `Leiden` clusters do slightly better.
 Had we set a higher value for $\lambda$ when running `Banksy`, results would diverge more; vice versa, using spatial PCs for regression would have `Leiden` clusters perform worse.
 Also, note that we would expect results to converge for $\lambda=0$.
 

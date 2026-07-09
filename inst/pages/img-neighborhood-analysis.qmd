@@ -45,7 +45,7 @@ theme_xy <- list(
 ## Nearest neighbors
 
 Custom spatial analyses may rely on identifying nearest neighbors (NNs) of cells.
-We recommend `r BiocStyle::CRANpkg("RANN")` for this purpose, which finds NNs in **$O(N\log N)$ time for $N$ cells** (c.f., conventional approaches would take $O(N^2)$ time) by relying on a Approximate Near Neighbor (ANN) C++ library.
+We recommend `r BiocStyle::CRANpkg("RANN")` for this purpose, which finds NNs in **$O(N\log N)$ time for $N$ cells** (c.f., conventional approaches would take $O(N^2)$ time) by relying on an approximate nearest-neighbor (ANN) C++ library.
 Furthermore, there is support for **exact, approximate, and fixed-radius searchers**.
 The latter is of particular interest in biology; e.g., one might require $k$NNs to lie within a biologically sensible distance as to avoid consideration of cells that are far-off, especially in sparse regions or at tissue borders.
 
@@ -311,7 +311,7 @@ For example, here we visualize the density of COI cells:
 
 coi <- c("DCIS_1", "DCIS_2", "Invasive_Tumor")
 scider::plotDensity(spe, coi=coi, probs=0.5) +
-  ggtitle("Spatial density of tumour cells")
+  ggtitle("Spatial density of tumor cells")
 ```
 
 ROI detection is performed using a graph-based approach as described in @Li2025-scider. 
@@ -325,7 +325,7 @@ Only grids with $\geq 1$ expected COI cell (estimated COI density $\geq 1$) are 
 
 spe <- findROI(spe, coi=coi, min.density=1)
 scider::plotROI(spe, roi=coi) + 
-  ggtitle("Tumour cell-based ROIs")
+  ggtitle("Tumor cell-based ROIs")
 ```
 
 These ROIs can then be used for downstream analysis, such as cell type 

@@ -21,7 +21,7 @@ provide inaccurate/incomplete `biocViews`. Especially the "Spatial" term relied
 upon here was added fairly recently and might be missing from older packages.
 :::
 
-### Exploratory
+## Exploratory
 
 The `r BiocStyle::Biocpkg("BiocPkgTools")` package [@Su2018-BiocPkgTools]
 provides tools to access and explore Bioconductor package metadata in R, 
@@ -33,7 +33,7 @@ including their details (e.g., authors) and (monthly) download statistics.
 library(BiocPkgTools)
 foo <- tryCatch(
     biocExplore(), 
-    error=\(e) NULL) # protext against unstable connection
+    error=\(e) NULL) # protect against unstable connection
 ```
 
 `biocPkgList()` retrieves the full Bioconductor software package listing
@@ -58,14 +58,14 @@ We can also browse for packages that also include more specific terms, for examp
 df$Package[.f(c("Spatial", "Clustering"))]
 ```
 
-### Metrics
+## Metrics
 
 We will now have a look at the package ecosystem in a more quantitative manner.
 Specifically, we will investigate how the number of available packages evolves
 over time, and how long individual packages remain available (their "lifetime").
 Lastly, we will quantify the number of times more specific subterms (co-)occur.
 
-#### Number of packages
+### Number of packages
 
 Let's first summarize the number of packages available over time,
 focusing specifically on "SingleCell" and "Spatial" packages.
@@ -121,7 +121,7 @@ To get an idea of the project's "growth" in this space, we can regress the
 number of packages against time using a linear model (LM). We here skip 
 dates at which very few packages were available/being developed:
 
-```{r perc-pgk, echo=-c(3, 4)}
+```{r perc-pkg, echo=-c(3, 4)}
 #| code-fold: true
 # fit linear model where x = 'date', y = # packages
 # (starting at 'date' where at least 5 packages exist)
@@ -141,7 +141,7 @@ The resulting coefficients tell us that about `r round(bs["SingleCell"]*12, 2)`
 single cell and `r round(bs["Spatial"]*12, 2)` spatial packages are being added
 each year (on average), and there is a delay of about `r dy` years between them.
 
-#### Package lifetimes
+### Package lifetimes
 
 We can further inspect the "lifetime" of packages, i.e., how long they remain 
 (installable) on Bioconductor:
@@ -180,7 +180,7 @@ ggplot(gg, aes(years, fill=biocViews)) +
         axis.text.x=element_text(angle=45, hjust=1))
 ```
 
-#### Subterms
+### Subterms
 
 Finally, let's investigate more specific `biocViews`, e.g., the type of work tasks 
 different packages cover. We will first count the number of packages that list
@@ -270,7 +270,7 @@ summarizing the project's current status, challenges, and future perspectives
 aspects of the project, such as educational efforts [@Drnevich2025-bioc-edu];
 see [here](https://www.bioconductor.org/help/publications/) for a full list.
 
-- The **scverse project** was first describes in 2023 and, arguably inspired
+- The **scverse project** was first described in 2023 and, arguably inspired
 by R/Bioconductor, set out to build a unified computational ecosystem for 
 single-cell and spatial omics data analysis in Python [@Virshup2023-scverse].
 

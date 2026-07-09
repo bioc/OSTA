@@ -14,7 +14,7 @@ with R v`r paste(R.version$major, R.version$minor, sep=".")`.
 <!-- get 'images/carousel/*.png' & display them alphabetically, 
 flipping with a 3.333 second delay via 'inst/carousel.R' -->
 
-```{r "carousel"}
+```{r carousel}
 #| warning: false
 #| echo: false
 source("carousel.R")

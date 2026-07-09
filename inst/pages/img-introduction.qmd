@@ -66,7 +66,7 @@ The [Vizgen MERSCOPE](https://vizgen.com/products/) platform, among the fluoresc
 - Briefly explain the logic behind sequential FISH
 - Understand that the final transcript xy coordinates are the results of multiple round of images, which are technically the raw data, but are typically not accessed
 - Hence, for the purpose of this book, the raw data may be considered the xy-coordinates of each transcript, which typically come in the form of a csv (or parquet?) transcript file
-- In addition, the raw data typically include immunofluoresce signals (acquired as images in TIFF or ZARR format) from a nucleus stain (e.g., DNA or DAPI) and optionally cell surface stains (e.g., CD3, PanCK, ...). These signals are used for cell (and/or nucleus) segmentation, typically done with deep learning methods such as CellPose.
+- In addition, the raw data typically include immunofluorescence signals (acquired as images in TIFF or ZARR format) from a nucleus stain (e.g., DNA or DAPI) and optionally cell surface stains (e.g., CD3, PanCK, ...). These signals are used for cell (and/or nucleus) segmentation, typically done with deep learning methods such as CellPose.
 - A final preprocessing steps assigns transcripts to segmented regions (cells and optionally nuclei) and counts how many transcripts per gene are present in each cell.
 - Processed files (typically the starting point of a Bioconductor analysis) include: transcript files, segmentation mask, expression matrix (cell x gene), and cell metadata (with xy coordinates of their centroids), and optionally a polygon file which represents the cell boundaries.
 -->

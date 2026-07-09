@@ -95,8 +95,8 @@ ggplot(df, aes(cell_x, cell_y, color=cell_category)) +
 Next, we will reconstruct or segment the individual islets using a density-based approach implemented in `r BiocStyle::Biocpkg("sosta")`.
 
 ```{r est-params}
-# use 'nImages' randomly samples 
-# images for parameter estimation
+# randomly sample 'nImages' images
+# for parameter estimation
 est <- estimateReconstructionParametersSPE(
     spe, 
     marks="cell_category", 

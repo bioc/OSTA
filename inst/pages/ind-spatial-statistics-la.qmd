@@ -40,7 +40,7 @@ plotColGraph(sfe,
 
 ### Spatial autocorrelation
 
-Spatial autocorrelation measures similarity between spatial units (e.g., cells) while recognize that the units are not independent due to their spatial context. Spatial autocorrelation metrics can be global (summarizing the entire study area) of view or local (provide statistic for each unit). In addition, there exist methods for univariate and multivariate comparisons of continuous and categorical data [@Pebesma2023-book-spatial-data-science].
+Spatial autocorrelation measures similarity between spatial units (e.g., cells) while recognizing that the units are not independent due to their spatial context. Spatial autocorrelation metrics can be global (summarizing the entire study area) or local (providing a statistic for each unit). In addition, there exist methods for univariate and multivariate comparisons of continuous and categorical data [@Pebesma2023-book-spatial-data-science].
 
 #### Univariate measures - Moran's $I$
 
@@ -57,7 +57,7 @@ sfe <- runUnivariate(sfe,
     BPPARAM=bp)
 ```
 
-We can visualize the three genes with highest Moran's $I$.
+We can visualize the three genes with the highest Moran's $I$.
 
 ```{r plot_moran_genes, fig.width=18, fig.height=5}
 I <- rowData(sfe)$moran_sample01
@@ -66,7 +66,7 @@ topGenes <- rownames(sfe)[head(o, 3)]
 plotSpatialFeature(sfe, topGenes, ncol=3)
 ```
 
-We can further visualize this using when calculating and plotting local Moran's $I$ values [@Anselin1995-LISA]. The interpretation is analogue to the global counterpart. The higher the value, the more similar the expression among a cell's neighbors. Negative values indicate local dissimilarity in expression.
+We can further visualize this by calculating and plotting local Moran's $I$ values [@Anselin1995-LISA]. The interpretation is analogous to the global counterpart. The higher the value, the more similar the expression among a cell's neighbors. Negative values indicate local dissimilarity in expression.
  
 ```{r local_moran, fig.width=18, fig.height=5}
 sfe <- runUnivariate(sfe, 
@@ -108,7 +108,7 @@ Lee's $L$ combines the Pearson correlation coefficient and Moran's $I$ [@Lee2001
 res <- calculateBivariate(sfe, type="lee", feature1=geneProbes, colGraphName="knn6")
 ```
 
-We will identify the gene pairs with highest Lee's $L$ value 
+We will identify the gene pairs with the highest Lee's $L$ value
 and then calculate and visualize the respective local measure.
 
 ```{r select_lees_l}
@@ -141,7 +141,7 @@ plotLocalResult(
 
 Join count statistics can be used to quantify the arrangement of categorical marks on lattices. The join count statistic calculates how often a categorical mark appears next to itself or to another category within the pre-defined neighborhood. These values can then be compared against a theoretical or a permutation-based value test of the null hypothesis of random spatial allocation of the marks [@Getis2009-spatial-weights].
 
-Here, we will use the this to quantify the tendency of clusters (non-spatial) to co-localize in their relative neighborhood. Note that the output contains z-scores and no p-values such that a user-defined threshold can be applied.
+Here, we will use this to quantify the tendency of clusters (non-spatial) to co-localize in their relative neighborhood. Note that the output contains z-scores and no p-values such that a user-defined threshold can be applied.
 
 ```{r clustering, fig.width=18, fig.height=5}
 # code adapted from 
@@ -187,4 +187,4 @@ resJc <- resJc[order(resJc[, "z-value"], decreasing=TRUE), ]
 head(resJc, 20)
 ```
 
-We note that the non-spatial cluster labels are of course most likely found next to each other. Apart from this obvious result, the first top non-self interaction is $5:3$. Looking at the plot of the spatial distributions of the clusters these are two clusters in the ductal carcinoma regions of the tissue, the carcinoma core and the border. 
+We note that the non-spatial cluster labels are of course most likely found next to each other. Apart from this obvious result, the top non-self interaction is $5:3$. Looking at the plot of the spatial distributions of the clusters, these are two clusters in the ductal carcinoma regions of the tissue: the carcinoma core and the border.

@@ -44,7 +44,7 @@ Spatial omic technologies often generate data modalities that capture morphologi
 Localization of these profiles can also be defined in different units and even in different perspectives (i.e., coordinate systems). 
 Image alignment and registration methods provide transformations to map spatial locations of observations from one coordinate system to another, thus allowing to transfer data across observations from identical tissue sections, adjacent sections, as well as sections with similar morphology and structure.
 
-Strategies and approaches for aligning spatial omic assays differ depending on the modalility and/or instrument used to generate these data. 
+Strategies and approaches for aligning spatial omic assays differ depending on the modality and/or instrument used to generate these data.
 These methods could be categorized into two classes, where some incorporate 
 **(i)** the morphology of microscopy images (*image registration*) of reference and query data [@Friston1995-registration] and others that rely on the
 **(ii)** spatial locations of observations (cells or spots) and the distribution of omic profiles (*omics coverage*) [@Kiessling2024-spatial-multi-omics].
@@ -194,7 +194,7 @@ p + geom_point(
 
 A number of R/Python frameworks can be used to automatically or manually align microscopy images associated with spatial omics datasets. The Python modules could be used through R packages such as `r BiocStyle::Biocpkg("reticulate")` and `r BiocStyle::Biocpkg("basilisk")`.
 
-- `r BiocStyle::Githubpkg("BIMSBbioinfo/VoltRon")` [@Manukyan2023-VoltRon] is an R package that allows alignment between multiple spatially aware datasets of distinct modalities. A Shiny application is provided to enable both automated and manual alignment across adjacent/same tissue sections where users can interactively manipulate microscopy images and choose landmarks points for co-registration.
+- `r BiocStyle::Githubpkg("BIMSBbioinfo/VoltRon")` [@Manukyan2023-VoltRon] is an R package that allows alignment between multiple spatially aware datasets of distinct modalities. A Shiny application is provided to enable both automated and manual alignment across adjacent/same tissue sections where users can interactively manipulate microscopy images and choose landmark points for co-registration.
 
 ![](../images/crs-registration-alignment.png){width="75%" fig-align="center" alt="The Shiny application interface for alignment Spatial datasets stored in VoltRon objects"}
 

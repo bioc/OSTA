@@ -131,7 +131,7 @@ ribosomal or mitochondrial transcripts to use for computing QC metrics.
 However, imaging-based platforms provide a set of negative probes 
 that can be used to check for nonspecific RNA captures.
 
-Finally, imaging-based platforms include, in addition to transcripts data, 
+Finally, imaging-based platforms include, in addition to transcript data,
 morphology information (such as area and eccentricity of segmented cells) 
 and information from antibody stains (such as those targeting cell nuclei 
 or surface; see above).
@@ -195,7 +195,7 @@ used to compute a set of metrics that are particular to imaging-based ST data;
 examples listed below. 
 In addition, the function incorporates an internal call to `quickRnaQc.se`
 from the `r BiocStyle::Biocpkg("scrapper")` package to compute some standard 
-scRNA-seq QC metrics on an `altExp`; here, we specify using negatives probes.
+scRNA-seq QC metrics on an `altExp`; here, we specify using negative probes.
 
 ::: {.aside}
 Note that metrics also include each cell's distance from horizontal/vertical
@@ -297,7 +297,7 @@ In some cases, a peculiar count-area distribution might be indicative of
 segmentation problems. Undersegmentation (i.e., when groups of cells are 
 merged together) might lead to fewer counts than expected for a given 
 area (e.g., when they are far apart and empty space is being segmented).
-[An useful metric to explore this issue is the `log2SignalDensity`, 
+[A useful metric to explore this issue is the `log2SignalDensity`,
 which estimates the transcript density for each cell.]{.aside}
 
 ## CosMx-specific QC {#sec-img-quality-control-cos}
@@ -413,8 +413,8 @@ As expected, we observe a decline in counts near FOV borders, with about
 `r round(100*mean(df$dist_border < 50), 1)`% of cells falling below 50 pixels (dashed line).
 
 These cells exhibit lower total counts and smaller segmented areas, 
-as well as a distorsion in their aspect ratio (thin cells close to 
-the y border and broad cells close to the x boder).
+as well as a distortion in their aspect ratio (thin cells close to
+the y border and broad cells close to the x border).
 
 To mitigate potential artefacts in downstream analyses, we may choose to filter 
 out these cells, or otherwise flag them as potentially problematic events to be 
@@ -479,7 +479,7 @@ transcript density, aspect ratio and (for CosMx) distance from FOV borders.
 Specifically, `r BiocStyle::Biocpkg("SpaceTrooper")`'s `computeQCScore` function will compute a combined quality score based on count density (`log2SignalDensity`), cell aspect ratio (`log2AspectRatio`), only for cells closer than a specified distance from FOV borders, and control-to-total count ratio (`log2Ctrl_total_ratio`). The count density is computed as the ratio between the per cell total gene counts divided by the cell area; the aspect ratio represents FOV border effect typical of CosMx datasets; the control-to-total ratio is the ratio between counts for control probes and total counts per cell and represents nonspecific signal.
 
 ::: {.aside}
-The quality score is computed using a ridge logistic regression model, which predicts a score between 0 and 1, where higher scores indicate better quality cells, using the following model forumla: `~(log2SignalDensity + Area_um + log2Ctrl_total_ratio + I(abs(log2AspectRatio) * as.numeric(dist_border<50)))^2`, where the `^2` notation indicates all pairwise interactions among the included variables. See `?computeQCScore` for details.
+The quality score is computed using a ridge logistic regression model, which predicts a score between 0 and 1, where higher scores indicate better quality cells, using the following model formula: `~(log2SignalDensity + Area_um + log2Ctrl_total_ratio + I(abs(log2AspectRatio) * as.numeric(dist_border<50)))^2`, where the `^2` notation indicates all pairwise interactions among the included variables. See `?computeQCScore` for details.
 :::
 
 Here, `computeQCScore()` will add a (numeric) `QC_score`, 
@@ -487,7 +487,7 @@ and `computeQCScoreFlags` will add a (logical) `low_qcscore` slot
 to the input SPE's `colData`; the latter flags low-quality cells.
 
 ```{r SpaceTrooper-calc-score, message=FALSE}
-# compute quality scores & flag cell's that
+# compute quality scores & flag cells that
 # fall below specified percentile threshold
 cos <- computeQCScore(cos)
 cos <- computeQCScoreFlags(cos, 
@@ -530,7 +530,7 @@ ol <- isOutlier(nc, log=TRUE, type="lower", nmads=3)
 
 ```{r xen-plot-ol, fig.width=4, fig.height=3}
 #| code-fold: true
-# visualize histrogram of counts 
+# visualize histogram of counts
 # per area, including threshold
 par(mar=c(4, 4, 0, 0))
 hist(log(nc), 

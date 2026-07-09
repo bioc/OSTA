@@ -15,7 +15,7 @@ df[[1]] <- factor(df[[1]], unique(df[[1]]))
 # sum runtimes by chapter
 df <- array2DF(by(df[[2]], df[[1]], sum))
 # grey out chapters w/o code
-.f <- \(.) sprintf("<span style='color:#d3d3d3'> %s <span/>", .)
+.f <- \(.) sprintf("<span style='color:#d3d3d3'> %s </span>", .)
 df[[1]][na] <- .f(df[[1]][na <- df[[2]] < 1])
 # highlight slowest chapters
 bf <- head(order(df[[2]], decreasing=TRUE), 10)
