@@ -24,14 +24,22 @@ on:
       - 'deps.Dockerfile'
       - 'DESCRIPTION'
 
+env:
+  BUILD_BRANCH: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || github.ref_name }}
+  BUILD_SHA: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   build:
     # Only run if triggered by push/workflow_dispatch, or if triggered by workflow_run and the previous workflow succeeded
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    name: build-book (${{ github.ref_name }})
+    name: build-book (${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || github.ref_name }})
     permissions:
-      contents: write
+      contents: read
       packages: write
 
     steps:
@@ -41,11 +49,13 @@ jobs:
           verbose: true
       
       - name: 🧾 Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ env.BUILD_SHA }}
 
       - name: 🏷 Set Bioc version
         run: |
-          branch="${{ github.ref_name }}"
+          branch="${BUILD_BRANCH}"
           if [[ "$branch" == "devel" || "$branch" =~ ^RELEASE_ ]]; then
             # Remove everything after and including '-' if present
             version=${branch%%-*}
@@ -58,14 +68,10 @@ jobs:
       # - name: ⏳ Collect Workflow Telemetry
       #   uses: catchpoint/workflow-telemetry-action@v2
 
-      - name: 🐳 Set up QEMU
-        uses: docker/setup-qemu-action@v4
-
       - name: 🐳 Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
   
       - name: 📝 Get book info
-        id: info
         env:
           OWNER: ${{ github.repository_owner }}
         run: |
@@ -84,18 +90,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-        id: extract_branch
-
       - name: 🏷 Get metadata for Docker
         id: meta
         uses: docker/metadata-action@v6
         with:
           images: ghcr.io/${{ env.owner }}/${{ env.pkgname }}
           tags: |
-            type=raw,value={{branch}}
+            type=raw,value=${{ env.BUILD_BRANCH }}
 
       - name: 📦 Build and push book image
         id: docker
@@ -106,31 +107,36 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           build-args: |
-            BRANCH=${{ steps.extract_branch.outputs.branch }}
+            BRANCH=${{ steps.meta.outputs.version }}
             OWNER=${{ env.owner }}
 
       - name: 📚 Recover pkg artifacts generated during build in local Docker container (pkg bundle and book) 
+        env:
+          IMAGE_TAG: ${{ steps.meta.outputs.tags }}
+          IMAGE_DIGEST: ${{ steps.docker.outputs.digest }}
+          PACKAGE_NAME: ${{ env.Pkgname }}
+          PACKAGE_VERSION: ${{ env.pkgversion }}
         run: |
-          IMG_REF="$(echo ${{ steps.meta.outputs.tags }} | cut -d':' -f1)@$(echo ${{ steps.docker.outputs.ImageID }})"
-          docker pull $IMG_REF
-          SHA=$(docker container create $IMG_REF)
-          docker container cp ${SHA}:/opt/pkg/${{ env.Pkgname }}_${{ env.pkgversion }}.tar.gz .
-          tar --extract --gzip --file ${{ env.Pkgname }}_${{ env.pkgversion }}.tar.gz
-          echo bundle_path=${{ env.Pkgname }}_${{ env.pkgversion }}.tar.gz >> "${GITHUB_ENV}"
-          echo book_path=${{ env.Pkgname }}/inst/doc/book/ >> "${GITHUB_ENV}"
+          IMG_REF="${IMAGE_TAG}@${IMAGE_DIGEST}"
+          docker pull "${IMG_REF}"
+          container_id=$(docker container create "${IMG_REF}")
+          trap 'docker container rm "${container_id}" >/dev/null' EXIT
+          docker container cp "${container_id}:/opt/pkg/${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz" .
+          tar --extract --gzip --file "${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz"
+          echo "bundle_path=${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz" >> "${GITHUB_ENV}"
+          echo "book_path=${PACKAGE_NAME}/inst/doc/book/" >> "${GITHUB_ENV}"
 
       - name: 🏷 Get gh-branch directory to deploy to
         run: |
           echo target_folder=$(echo ${{ env.BIOC_VERSION }} | sed 's,RELEASE_,,' | tr '_' '.') >> "${GITHUB_ENV}"
 
       - name: Upload static files as artifact
-        id: deployment
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ${{ env.book_path }}/
 
       - name: 💾 Upload package bundle artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bundle
           path: ${{ env.bundle_path }}
