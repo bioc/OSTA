@@ -271,6 +271,8 @@ to molecular crowding) and increase spatial bleeding (see also @sec-img-segmenta
 
 Some technologies like [Bruker's GeoMx](https://brukerspatialbiology.com/products/geomx-digital-spatial-profiler/) 
 require pre-selecting **regions of interest (ROIs)** for molecular profiling. 
+[The `r BiocStyle::Biocpkg("GeomxTools")` R/Bioconductor package provides functionality for analyzing (protein and transcriptomics) GeoMx data, including quality control, normalization, differential testing, and visualization.]{.aside}
+
 Unlike whole-tissue imaging, these platforms rely on **microdissection**.
 There are different ways to define ROIs, e.g.: 
 
