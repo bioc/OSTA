@@ -2,7 +2,7 @@
 
 ### Introduction
 
-In this chapter, we will use the human breast cancer Xenium dataset [@Janesick2023-high-res], which we loaded above (using the `r BiocStyle::Biocpkg("STexampleData")` package [@Righelli2022-SpatialExperiment]) and converted into a `SpatialFeatureExperiment` object. The `r BiocStyle::Biocpkg("SpatialFeatureExperiment")` package integrates the `r BiocStyle::Biocpkg("SpatialExperiment")` class with geometric annotations that are represented as Simple Features in the `r BiocStyle::CRANpkg("sf")` packages. We will use the `r BiocStyle::Biocpkg("Voyager")` package [@Moses2023-Voyager], which provides convenient wrappers around classic geospatial R packages such as `r BiocStyle::CRANpkg("spdep")` [@Pebesma2023-book-spatial-data-science]. For more details, please consult the authors' comprehensive [vignettes](https://pachterlab.github.io/voyager/index.html). 
+In this chapter, we will use the human breast cancer Xenium dataset [@Janesick2023-high-res], which we loaded above (using the `r BiocStyle::Biocpkg("STexampleData")` package [@Righelli2022-SpatialExperiment]) and converted into a `SpatialFeatureExperiment` object. The `r BiocStyle::Biocpkg("SpatialFeatureExperiment")` package integrates the `r BiocStyle::Biocpkg("SpatialExperiment")` class with geometric annotations that are represented as Simple Features in the `r BiocStyle::CRANpkg("sf")` package. We will use the `r BiocStyle::Biocpkg("Voyager")` package [@Moses2023-Voyager], which provides convenient wrappers around classic geospatial R packages such as `r BiocStyle::CRANpkg("spdep")` [@Pebesma2023-book-spatial-data-science]. For more details, please consult the authors' comprehensive [vignettes](https://pachterlab.github.io/voyager/index.html).
 
 This part is based on the [*pasta* resource vignette on lattice data analysis](https://robinsonlabuzh.github.io/pasta/00-overview-latSOD.html) [@Emons2025-pasta].
 
@@ -141,7 +141,7 @@ plotLocalResult(
 
 Join count statistics can be used to quantify the arrangement of categorical marks on lattices. The join count statistic calculates how often a categorical mark appears next to itself or to another category within the pre-defined neighborhood. These values can then be compared against a theoretical or a permutation-based value test of the null hypothesis of random spatial allocation of the marks [@Getis2009-spatial-weights].
 
-Here, we will use this to quantify the tendency of clusters (non-spatial) to co-localize in their relative neighborhood. Note that the output contains z-scores and no p-values such that a user-defined threshold can be applied.
+Here, we will use this to quantify the tendency of clusters (non-spatial) to colocalize in their relative neighborhood. Note that the output contains z-scores and no p-values such that a user-defined threshold can be applied.
 
 ```{r clustering, fig.width=18, fig.height=5}
 # code adapted from 

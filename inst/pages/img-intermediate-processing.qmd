@@ -118,7 +118,7 @@ for (k in names(pcs)) {
 
 ## Visualization
 
-Let's visualize the assignment obtains from non-spatial and spatially aware clustering:
+Let's visualize the assignments obtained from non-spatial and spatially aware clustering:
 
 ```{r plt-clu-xy, message=FALSE, fig.width=12, fig.height=3}
 #| code-fold: true

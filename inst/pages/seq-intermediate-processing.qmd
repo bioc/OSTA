@@ -159,7 +159,7 @@ table(spe$BayesSpace <- factor(.spe$spatial.cluster))
 ```
 
 
-## Visualizations
+## Visualization
 
 We can visualize the cluster labels in x-y space as spatial domains, alongside the manually annotated reference labels (`ground_truth`) available for this dataset.
 

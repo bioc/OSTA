@@ -201,7 +201,7 @@ spe$CellCharter <- unlist(py$label_df)
 
 ### Visualization
 
-Let's visualize the assignment obtains from non-spatial and spatially-aware clustering:
+Let's visualize the assignments obtained from non-spatial and spatially-aware clustering:
 
 ```{r plot-xy-k-joint, message=FALSE, fig.width=11, fig.height=6}
 #| code-fold: true

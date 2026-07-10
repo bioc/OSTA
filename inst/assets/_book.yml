@@ -59,7 +59,7 @@ book:
           file: pages/img-neighborhood-analysis.qmd
         - text: "⚙️ Cell–cell communication"
           file: pages/img-cell-cell-communication.qmd
-        - text: "📖 Sub-cellular analysis"
+        - text: "📖 Subcellular analysis"
           file: pages/img-sub-cellular-analysis.qmd
         - text: "🧩 Workflow: Xenium"
           file: pages/img-workflow-xenium.qmd

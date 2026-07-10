@@ -226,7 +226,7 @@ text(d+1, 12e3, adj=c(0,1), round(d, 2), col="red")
 
 Visualizing the above data across the tissue, we will typically observe that 
 expression and signaling values give similar spatial patterns, but the latter
-will be restricted to where ligand and receptor-expressing cells co-localize.
+will be restricted to where ligand and receptor-expressing cells colocalize.
 
 For simplicity, we pick a single interaction (CXCL12-CXCR4 signaling);
 here, `s` and `r` correspond to sender and receiver signal, respectively:

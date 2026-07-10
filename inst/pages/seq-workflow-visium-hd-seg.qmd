@@ -82,24 +82,24 @@ spe$in_tissue <- TRUE
 ```
 
 `Space Ranger` also provides information on the mapping between binned outputs
-(2, 8, 16um) and segmented cells. These are stored as cell metadata slot `map`:
+(2, 8, and 16 µm) and segmented cells. These are stored as cell metadata slot `map`:
 
 ```{r add-mapping, message=FALSE, warning=FALSE}
 # view bin-to-cell mapping information
 head(spe$map[[1]])
 ```
 
-Quick inspection shows us the number of 2um bins that were segmented, 
+Quick inspection shows us the number of 2 µm bins that were segmented,
 either as part of nuclei or whole cells:
 
 ```{r check-bin-cell-mapping}
-# number of segmented 2um bins
+# number of segmented 2 µm bins
 summary(sapply(spe$map, nrow))
-# fraction of 2um bins assigned to nucleus
+# fraction of 2 µm bins assigned to nucleus
 summary(sapply(spe$map, \(.) mean(.$in_nucleus)))
 ```
 
-For runtime reasons, we will from the tissue 
+For runtime reasons, we will crop the tissue
 to about half of its original width and height.
 
 ```{r sub}
@@ -177,19 +177,19 @@ plot(st_geometry(geo), col=rep(colors(), 2))
 
 ### Bin mapping
 
-We can estimate cell areas based on the number of 2um bins covered by each mask, e.g., 10 bins (4um$^2$ each) would correspond to an area of 40um$^2$. Based on this, we can also approximate the area of each cell's nucleus using the `in_nucleus` flag provided in the bin-to-cell mapping information.
+We can estimate cell areas based on the number of 2 µm bins covered by each mask, e.g., 10 bins (4 µm^2^ each) would correspond to an area of 40 µm^2^. Based on this, we can also approximate the area of each cell's nucleus using the `in_nucleus` flag provided in the bin-to-cell mapping information.
 
 ```{r um2}
-# get cell areas = 4x number of 2um bins
+# get cell areas = 4x number of 2 µm bins
 sfe$um2 <- 4*sapply(sfe$map, nrow)
-# get fraction of 2um bins that are nuclear
+# get fraction of 2 µm bins that are nuclear
 sfe$nuc <- sapply(sfe$map, \(.) mean(.$in_nucleus))
 # get nucleus areas = cell area x nuclear fraction
 sfe$nuc_um2 <- sfe$um2*sfe$nuc
 ```
 
 We can also investigate the number of different cells
-that are contained in 8um and 16um bins, respectively:
+that are contained in 8 µm and 16 µm bins, respectively:
 
 ```{r bin-vs-cell}
 names(bin) <- bin <- c("square_008um", "square_016um")
@@ -206,7 +206,7 @@ med <- sapply(ncs, median)
 q75 <- sapply(ncs, quantile, 0.75)
 ```
 
-Here, we can observe that 8/16um bins map to a median of `r med[1]`/`r med[2]` 
+Here, we can observe that 8 µm/16 µm bins map to a median of `r med[1]`/`r med[2]`
 cells, only 25\% of bins map to more than `r q75[1]`/`r q75[2]` cells, and at 
 most `r max[1]`/`r max[2]` cells are mapped to any bin.
 
