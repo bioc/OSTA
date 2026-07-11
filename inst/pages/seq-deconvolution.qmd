@@ -8,7 +8,7 @@
 
 Sequencing-based ST data can contain zero to multiple cells per spot, which might be fully or only partially covered by cells, depending on the spatial resolution of the platform and the tissue cell density (see also @sec-seq-introduction and the schematic Figure below). This aspect of the data implies that there may be a mixture of cell types in a spot and thus a mixture of transcriptional programs.
 
-```{r fig-deconvolution-spot, echo=FALSE, out.width="33%", fig.cap="Schematic illustrating multiple cells in a 10x Genomics Visium spot (diameter of 55µm; purple line) overlaying the hematoxylin and eosin (H&E) stained image. The center-to-center distance between spots is 100µm (yellow line), and a typical immune cell's diameter is around 10µm (cyan line)."}
+```{r fig-deconvolution-spot, echo=FALSE, out.width="33%", fig.cap="Schematic illustrating multiple cells in a 10x Genomics Visium spot (diameter of 55 µm; purple line) overlaying the hematoxylin and eosin (H&E) stained image. The center-to-center distance between spots is 100 µm (yellow line), and a typical immune cell's diameter is around 10 µm (cyan line)."}
 knitr::include_graphics("../images/seq-deconvolution.png")
 ```
 

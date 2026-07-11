@@ -124,7 +124,7 @@ nor an "unbiased" sample of it, but rely on the design of gene panels.
 
 Depending on the platform and the application, such gene panels 
 may be pan-tissue or targeting specific tissues or cell types. 
-Moreover, they vary from a few hundreds (e.g., 313 in the first Xenium panel) 
+Moreover, they vary from a few hundred (e.g., 313 in the first Xenium panel)
 to several thousands (e.g., the 5k Xenium panel or the 6k and 18k CosMx panels). 
 Hence, unlike in sequencing-based platforms, we may not have enough
 ribosomal or mitochondrial transcripts to use for computing QC metrics. 
@@ -376,7 +376,7 @@ Taken together, we cannot deem any FOVs as being obviously problematic here.
 ### Border effects
 
 Particularly in CosMx, lack of FOV stitching during cell segmentation can result 
-in fractured and possibly duplicated cells. To investigate potential artefacts 
+in fractured and possibly duplicated cells. To investigate potential artifacts
 related to this, we can use the distance to FOV borders calculated previously.
 
 We can *roughly* estimate cell radii as $A=\pi r^2$ $\leftrightarrow r=\sqrt{A/\pi}$, 
@@ -416,7 +416,7 @@ These cells exhibit lower total counts and smaller segmented areas,
 as well as a distortion in their aspect ratio (thin cells close to
 the y border and broad cells close to the x border).
 
-To mitigate potential artefacts in downstream analyses, we may choose to filter 
+To mitigate potential artifacts in downstream analyses, we may choose to filter
 out these cells, or otherwise flag them as potentially problematic events to be 
 kept a cautionary eye on. 
 
@@ -611,7 +611,7 @@ and, a theoretical piece on *background* signal -- i.e., non-RNA target binding 
 
 :::
 
-### Save data
+### Save data {.unnumbered}
 
 ```{r save-data}
 # save post-QC Xenium data

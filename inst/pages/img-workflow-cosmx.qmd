@@ -143,7 +143,7 @@ plotPolygons(sub,
 Note that the annotation performed here is a transfer label from a reference dataset that only partially matches with the tissue under study and purposely annotated at a coarse level (level 1). Ideally, one can use a more appropriate reference dataset, or better yet, build a custom reference from single-cell RNA-seq data of the same tissue.
 
 ::: {.aside}
-A different, often preferable, approach consists in using, in addition to the gene expression profiles, the image data and the spatial context of the cells. `r BiocStyle::Githubpkg("Nanostring-Biostats/InSituType", "InSituType")` [@danaher2022insitutype] provides a framework to perform such analysis in unsupervised, semi-supervised, or supervised manners. Please refer to its documentation for more details.
+A different, often preferable, approach consists of using, in addition to the gene expression profiles, the image data and the spatial context of the cells. `r BiocStyle::Githubpkg("Nanostring-Biostats/InSituType", "InSituType")` [@danaher2022insitutype] provides a framework to perform such analysis in unsupervised, semi-supervised, or supervised manners. Please refer to its documentation for more details.
 :::
 
 ### Marker genes

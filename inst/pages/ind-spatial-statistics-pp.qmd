@@ -64,7 +64,7 @@ Global analyses summarize a statistic across the entire field of view. This mean
 
 #### Correlation
 
-One option in point pattern analysis is to analyse the correlation of marks. For example, clustering or spacing of cells can be determined relative to a completely spatially random (CSR) process.
+One option in point pattern analysis is to analyze the correlation of marks. For example, clustering or spacing of cells can be determined relative to a completely spatially random (CSR) process.
 
 ::: {.callout-note collapse="true" title="Complete spatial randomness"}
 

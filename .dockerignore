@@ -1,0 +1,17 @@
+.git
+.github
+.Rproj.user
+.quarto
+**/.quarto
+**/.DS_Store
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+AGENTS.md
+.positai
+inst/docs
+inst/site_libs
+inst/pages/*_cache
+inst/pages/*_files
+inst/pages/*.rds

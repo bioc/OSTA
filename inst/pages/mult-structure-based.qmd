@@ -281,7 +281,7 @@ res <- resid(., scaled=TRUE) ~ fitted(.)
 plot(mod, res, 
     pch=12, abline=0, 
     xlab="Fitted values", 
-    ylab="Standardised residuals",
+    ylab="Standardized residuals",
     col=allIslets$patient_id) 
 ```
 
@@ -292,7 +292,7 @@ res <- resid(., scaled=TRUE) ~ fitted(.) | patient_id
 plot(mod, res, 
     pch=12, abline=0, 
     xlab="Fitted values", 
-    ylab="Standardised residuals")
+    ylab="Standardized residuals")
 ```
 
 ### QQ plot

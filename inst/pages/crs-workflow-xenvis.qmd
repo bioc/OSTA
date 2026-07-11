@@ -110,7 +110,7 @@ ggplot() + coord_equal() + theme_void() +
 Binning single-cell resolution spatial data into spots can be useful for checking 
 correlations between technical replicates of the same technology, identifying 
 artifacts across technologies, and checking cell density (number of cells per spot). 
-In general, it is possible to bin at the transcript-level (sub-cellular) or cell-level.
+In general, it is possible to bin at the transcript-level (subcellular) or cell-level.
 
 To aggregate single cell-level data from Xenium at the spot level, we first 
 carry out a fixed-radius neighborhood search using `r BiocStyle::CRANpkg("RANN")` 

@@ -107,7 +107,7 @@ signifPlot(spicyTestPair)
 
 Here, we can observe that the most significant relationship occurs between 
 cytotoxic T cells (Tc) and the beta cells of the pancreas. Tc and beta cells 
-appear to be significantly more co-localized in patients with onset diabetes 
+appear to be significantly more colocalized in patients with onset diabetes
 compared to non-diabetic patients, indicated by the positive coefficient.
 
 We can use `spicyBoxPlot` to examine a cell type-cell type relationship closely.
@@ -117,11 +117,11 @@ spicyBoxPlot(spicyTestPair, from="Tc", to="beta") + ylim(c(-50, 50))
 ```
 
 We can investigate individual images to ensure our results reflect biologically 
-meaningful relationships. We can extract the individual co-localization metrics 
+meaningful relationships. We can extract the individual colocalization metrics
 from the `spicyTest` object using the `bind` function.
 
 ```{r spicyR-metadata, eval=FALSE}
-# extract co-localization metrics
+# extract colocalization metrics
 cd <- colData(.spe) |>
     as.data.frame() |> 
     distinct(patient_id, patient_stage, image_name) |>
@@ -139,10 +139,10 @@ cell types in the original image using the `plotImage` function.
 
 - The left image (L29) comes from a non-diabetic patient. 
 We can see that beta and Tc cells appear to be dispersed, 
-which is reflected in the co-localization metric.
+which is reflected in the colocalization metric.
 
 - The right image (O02) comes from a patient with early onset diabetes. 
-We can see that beta and Tc cells are far more co-localized, 
+We can see that beta and Tc cells are far more colocalized,
 with Tc cells even infiltrating the pancreatic islets in some cases.
 
 ```{r spicyR-plotImage, fig.width=10, fig.height=4.5}
@@ -180,7 +180,7 @@ spatialFDA/inst/doc/DiabetesIsletExampleBrief.html).
 :::
 
 The first important question is in what range we want to consider interactions. 
-We provide a generalisation of a guideline for the maximum radius provided by
+We provide a generalization of a guideline for the maximum radius provided by
 @Baddeley2015-book-point-patterns, which suggests to *not* consider any radii 
 beyond $1/2$ of the bounding-circle radius of an image, as else effects at the
 border of a FOV become too extreme. 
@@ -269,7 +269,7 @@ plotCrossHeatmap(resLs,
     guides(shape="none") + facet_wrap(~factor(coefficient, coefs, names(coefs)))
 ```
 
-This plot highlights an increased co-localization of T-cell types with
+This plot highlights an increased colocalization of T-cell types with
 pancreatic $\alpha$ cells in Onset diabetes but not in Long-duration diabetes. 
 This is an interesting overall finding and we will focus on the cell type pair 
 $\alpha$-cytotoxic T cells in more detail below.
@@ -354,9 +354,9 @@ qqnorm(res, pch=16)
 qqline(res, col="red")
 ```
 
-In summary, we have seen that there is increased co-localization of T-cell types
+In summary, we have seen that there is increased colocalization of T-cell types
 to the pancreatic islets early in the disease and that this recruitment is absent
-later in the disease. This increased co-localization in onset diabetes is happening
+later in the disease. This increased colocalization in onset diabetes is happening
 at shorter scales around $\alpha$ cells indicating that effects close to the 
 pancreatic islets are more affected than those further away.
 

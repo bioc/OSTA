@@ -1,3 +1,11 @@
+changes in version 1.2.2
++ new chapters: "Beyond this book", "Experimental design", "Deep learning"
++ "Further reading" sections in chapters throughout book
++ contribution guidelines
++ revised content and editing in numerous chapters
++ improved cross-referencing between chapters
++ updated references
+
 changes in version 1.2.1
 + revision of 'scran' & 'scater' to 'scrapper'
 

@@ -111,9 +111,9 @@ In the underlying paper, there are both normal adjacent tissue (NAT) and colorec
     - 18,085 genes x 4,269 spots
   - **VisiumHD**
     - 18,085 genes x
-      - 8,731,400 bins (2µm)
-      - 545,913 bins (8µm)
-      - 137,051 bins (16µm)
+      - 8,731,400 bins (2 µm)
+      - 545,913 bins (8 µm)
+      - 137,051 bins (16 µm)
   - **Xenium**
     - 422 RNA targets x 340,837 cells
 

@@ -29,6 +29,8 @@ library(tidyr)
 library(VisiumIO)
 ```
 
+## Setup
+
 In this demo, we perform deconvolution on 16 µm bins and compare the concordance with results on 8 µm bins, provided by 10x Genomics. See @sec-seq-deconvolution for a more focused discussion of deconvolution methods. [Here, we only demonstrate the analysis for patient 2 (P2). Other patients, such as P1 and P5, also have public Chromium, Visium HD, and Xenium data available for the CRC group (see @sec-bkg-example-datasets). It would be interesting to investigate the differences in malignant cells/bins (e.g., DEGs, pathways) between patients across different platforms.]{.aside}
 
 ```{r load-vhd8, message=FALSE, warning=FALSE}
@@ -37,7 +39,7 @@ id <- "VisiumHD_HumanColon_Oliveira"
 pa <- OSTA.data_load(id)
 dir.create(td <- tempfile())
 unzip(pa, exdir=td)
-# read 8um bins into 'SpatialExperiment'
+# read 8 µm bins into 'SpatialExperiment'
 vhd8 <- TENxVisiumHD(
     spacerangerOut=td, 
     processing="filtered",
@@ -79,7 +81,7 @@ lapply(lab, \(.) {
 Another resolution of Visium HD with 16 µm bins can be read in as follows:
 
 ```{r load-vhd16, message=FALSE}
-# read 16um bins into 'SpatialExperiment'
+# read 16 µm bins into 'SpatialExperiment'
 vhd16 <- TENxVisiumHD(
     spacerangerOut=td,
     processing="filtered",
@@ -160,8 +162,8 @@ To keep runtimes low, our downstream analysis will be performed on a subset area
 }
 vhd8r <- .rng(vhd8)
 # vhd16r <- .rng(vhd16) 
-# use 8um bounding boxes to subset spes at both resolutions; 
-# it is similar to 16um's box range 
+# use 8 µm bounding boxes to subset SPEs at both resolutions;
+# it is similar to the 16 µm box range
 .box <- \(roi, lty, lwd, col) {
     geom_rect(
         xmin=vhd8r[[roi]][1], xmax=vhd8r[[roi]][2], 
@@ -436,9 +438,9 @@ ij <- paste(df[, 1], df[, 2], sep=";")
 head(sort(table(ij), decreasing=TRUE), 5)
 ```
 
-We can see that myeloid are commonly co-localized with tumor and fibroblasts cells; most doublets are homotypic, i.e., they are (mostly) composed of one low-resolution type.
+We can see that myeloid cells are commonly colocalized with tumor and fibroblast cells; most doublets are homotypic, i.e., they are (mostly) composed of one low-resolution type.
 
-::: {.callout-note title="Subset 8um bins within black bounding box" collapse="true"}
+::: {.callout-note title="Subset 8 µm bins within black bounding box" collapse="true"}
 We can perform the same subsetting procedure to 8 µm bins and compare the difference in the number of bins in the zoomed (black box) area.
 
 ```{r vhd8-subset-zoom}

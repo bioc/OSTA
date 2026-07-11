@@ -129,8 +129,8 @@ benchmark, or other, references and resources mentioned throughout the book.
 | [SpatialData](https://spatialdata.scverse.org) | @Marconato2025-SpatialData |
 | Bruker's CosMx | [AtoMx](https://nanostring.com/products/atomx-spatial-informatics-platform) |
 | Vizgen's MERSCOPE | [Visualizer](https://vizgen.com/vizualizer-software) |
-| 10 Genomic's Xenium | [Xenium Explorer](https://www.10xgenomics.com/support/software/xenium-explorer) |
-| 10 Genomic's Visium | [Loupe Browser](https://www.10xgenomics.com/support/software/loupe-browser) |
+| 10x Genomics' Xenium | [Xenium Explorer](https://www.10xgenomics.com/support/software/xenium-explorer) |
+| 10x Genomics' Visium | [Loupe Browser](https://www.10xgenomics.com/support/software/loupe-browser) |
 | `Seurat`-Loupe conversion | `r Githubpkg("10XGenomics/loupeR")` |
 | `r Biocpkg("iSEE")` | @Albrecht2018-iSEE |
 | [*napari*](https://napari.org) | @Sofroniew2025-napari |
@@ -353,7 +353,7 @@ benchmark, or other, references and resources mentioned throughout the book.
 
 :::
 
-- @sec-img-sub-cellular: Sub-cellular analysis
+- @sec-img-sub-cellular: Subcellular analysis
 
 ::: {.tbl}
 
@@ -550,7 +550,7 @@ benchmark, or other, references and resources mentioned throughout the book.
 | `r Biocpkg("harmony")` | @Korsunsky2019-Harmony |
 | `r Biocpkg("CellMixS")` | @Lutge2021-CellMixS |
 | `r CRANpkg("rliger")` | @Welch2019-LIGER |
-| [scvi-tool](https://scvi-tools.org/)'s *Tangram* | @Biancalani2021-Tangram |
+| [scvi-tools](https://scvi-tools.org/)'s *Tangram* | @Biancalani2021-Tangram |
 | `r Githubpkg("gao-lab/SLAT")` | @Xia2023-SLAT |
 | `r Githubpkg("QihuangZhang/CeLEry")` | @Zhang2023-CeLEry |
 | `r Githubpkg("rajewsky-lab/novosparc")` | @Nitzan2019-novoSpaRc |
@@ -591,7 +591,7 @@ benchmark, or other, references and resources mentioned throughout the book.
 | `r Biocpkg("MOFA2")` | @Velten2022-MEFISTO |
 | `r BiocStyle::Biocpkg("MultiAssayExperiment")` | n/a |
 | `r Githubpkg("qukunlab/SpatialGlue")` | @Long2024-SpatialGlue |
-| [scvi-tool](https://scvi-tools.org/)'s *MultiVI* | @Ashuach2023-MultiVI |
+| [scvi-tools](https://scvi-tools.org/)'s *MultiVI* | @Ashuach2023-MultiVI |
 
 : {.striped tbl-colwidths="[33,66]"}
 
